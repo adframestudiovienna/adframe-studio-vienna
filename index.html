@@ -1,1102 +1,2898 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adframe Studio Vienna</title>
-  <meta name="description" content="Ads zur Kundengewinnung für lokale Unternehmen in Österreich. Ad Creatives (Video & Bild) – conversion-orientiert, schnell, ad-ready." />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Adframe Studio Vienna — AI Creatives & Performance Websites</title>
+  <meta
+    name="description"
+    content="Adframe Studio Vienna creates AI ad creatives and AI performance websites for businesses that want more attention, more inquiries, and more growth."
+  />
+  <meta name="theme-color" content="#0b0b0d" />
+
+  <!-- Premium webfont -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    :root{
-      --bg:#ffffff;
-      --text:#0b0c0f;
-      --muted:#5f6675;
-      --line:#e6e8ee;
-      --soft:#f7f8fa;
-      --shadow: 0 10px 30px rgba(10, 12, 15, 0.06);
-      --radius:16px;
-      --max:1120px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-    a{color:inherit}
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .muted{color:var(--muted)}
-    .divider{border:0; border-top:1px solid var(--line); margin:0}
+    /* =========================================================
+       ADFRAME STUDIO VIENNA — ONE PAGE WEBSITE
+       ---------------------------------------------------------
+       All styles are contained in this file so it works directly
+       on GitHub Pages without any build tools.
+       ========================================================= */
 
-    /* Sticky header */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:saturate(180%) blur(10px);
-      border-bottom:1px solid rgba(230,232,238,.8);
-    }
-    .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:16px 0;
-      transition:padding .25s ease;
-    }
-    .topbar.shrink .topbar-inner{ padding:10px 0; }
-    .brand{
-      display:flex; align-items:center; gap:12px; text-decoration:none;
-      min-width: 160px;
-    }
-    /* Header logo sizing (desktop) */
-    .brand img{height:100px; width:auto; display:block; transition:height .25s ease}
-    /* Header logo sizing (scrolled) */
-    .topbar.shrink .brand img{height:42px}
-
-    .nav{
-      display:flex; gap:18px; align-items:center;
-      font-size:14px;
-    }
-    .nav a{
-      text-decoration:none; color:var(--muted);
-    }
-    .nav a:hover{color:var(--text)}
-    .btn{
-      border:1px solid var(--line);
-      background:var(--bg);
-      padding:10px 14px;
-      border-radius:12px;
-      text-decoration:none;
-      font-size:14px;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
-      display:inline-flex; align-items:center; justify-content:center;
-    }
-    .btn:hover{background:var(--soft); border-color:#d6d9e3; transform:translateY(-1px)}
-    .btn.primary{
-      background:var(--text); color:#fff; border-color:var(--text);
-    }
-    .btn.primary:hover{background:#12151c}
-
-    /* Logo-only header block (kept but not used now) */
-    header.logo-only{display:none}
-    header.logo-only img{display:none}
-
-    /* Sections */
-    section{padding:72px 0}
-    section.tight{padding:56px 0}
-    .section-title{
-      font-size:20px;
-      margin:0 0 12px;
-      letter-spacing:-.01em;
-    }
-    .section-kicker{
-      font-size:14px;
-      color:var(--muted);
-      margin:0 0 18px;
-      max-width: 760px;
+    :root {
+      --bg: #08080a;
+      --bg-soft: #101015;
+      --bg-elevated: rgba(255, 255, 255, 0.05);
+      --bg-elevated-strong: rgba(255, 255, 255, 0.08);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --stroke-strong: rgba(255, 255, 255, 0.18);
+      --text: #f4f0e8;
+      --text-muted: rgba(244, 240, 232, 0.72);
+      --text-soft: rgba(244, 240, 232, 0.56);
+      --accent: #c9a66b;
+      --accent-soft: rgba(201, 166, 107, 0.18);
+      --accent-strong: #e7c38b;
+      --white: #ffffff;
+      --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.38);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: 1240px;
+      --header-height: 84px;
+      --transition: 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* Hero base */
-    .hero{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:28px;
-      align-items:start;
-    }
-    .headline{
-      font-size:44px;
-      line-height:1.1;
-      margin:0 0 14px;
-      letter-spacing:-.03em;
-    }
-    .subhead{margin:0 0 18px; color:var(--muted); max-width: 760px}
-    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
-
-    .hero-bullets{
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:18px;
-      background: var(--soft);
-    }
-    .bullet{
-      display:flex; gap:10px; padding:10px 0; border-bottom:1px solid rgba(230,232,238,.7);
-      color:var(--muted);
-      font-size:14px;
-    }
-    .bullet:last-child{border-bottom:0}
-    .dot{
-      width:8px; height:8px; border-radius:999px; background:var(--text); margin-top:6px; flex:0 0 auto;
-    }
-
-    /* ===== HERO PRO (premium) ===== */
-    .hero-section{
-      position:relative;
-      overflow:hidden;
-    }
-    .hero-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid var(--line);
-      background:#fff;
-      padding:7px 10px;
-      border-radius:999px;
-      margin-bottom:14px;
-      box-shadow: 0 6px 18px rgba(10,12,15,.04);
-    }
-    .hero-note{
-      max-width: 720px;
-      margin-top: 12px;
-    }
-    .hero-micro{
-      margin-top: 16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 14px;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .micro-item{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid rgba(230,232,238,.9);
-      background: var(--soft);
-      padding:8px 10px;
-      border-radius:999px;
-    }
-    .micro-dot{
-      width:8px; height:8px; border-radius:999px;
-      background: var(--text);
-      opacity:.8;
-    }
-    .hero-frame{
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      background:#fff;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .hero-visual{
-      position:relative;
-      padding:18px;
-      background:
-        radial-gradient(1200px 400px at 10% 0%, rgba(11,12,15,.06), transparent 50%),
-        radial-gradient(900px 300px at 90% 10%, rgba(11,12,15,.05), transparent 48%),
-        linear-gradient(180deg, #ffffff, #fbfbfc);
-      border-bottom:1px solid var(--line);
-    }
-    .hv-top{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      margin-bottom:14px;
-    }
-    .hv-pill{
-      height:10px;
-      width:64px;
-      border-radius:999px;
-      background: linear-gradient(90deg, rgba(11,12,15,.10), rgba(11,12,15,.04));
-    }
-    .hv-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .hv-card{
-      border:1px solid rgba(230,232,238,.9);
-      border-radius:14px;
-      padding:12px;
-      background:#fff;
-      box-shadow: 0 10px 24px rgba(10,12,15,.05);
-      transform: translateZ(0);
-    }
-    .hv-line{
-      height:10px;
-      border-radius:999px;
-      background: linear-gradient(90deg, rgba(11,12,15,.12), rgba(11,12,15,.04));
-      margin-bottom:10px;
-    }
-    .hv-line.w80{ width:80% }
-    .hv-line.w70{ width:70% }
-    .hv-line.w60{ width:60% }
-    .hv-line.w50{ width:50% }
-    .hv-chip-row{ display:flex; gap:8px; margin-top:8px; }
-    .hv-chip{
-      height:22px;
-      width:44px;
-      border-radius:999px;
-      border:1px solid rgba(230,232,238,.9);
-      background: var(--soft);
-    }
-    .hv-cta{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
-      align-items:center;
-      justify-content:flex-start;
-    }
-    .hv-btn{
-      height:34px;
-      width:120px;
-      border-radius:12px;
-      background: var(--text);
-      opacity:.92;
-      box-shadow: 0 10px 24px rgba(10,12,15,.12);
-    }
-    .hv-btn.ghost{
-      width:92px;
-      background:#fff;
-      border:1px solid rgba(230,232,238,.95);
-      box-shadow:none;
-    }
-    .hv-float{
-      position:absolute;
-      border:1px solid rgba(230,232,238,.9);
-      border-radius:14px;
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 12px 28px rgba(10,12,15,.08);
-      pointer-events:none;
-      animation: floaty 7s ease-in-out infinite;
-    }
-    .hv-float.f1{ width:84px; height:54px; right:18px; top:16px; animation-delay:0s; }
-    .hv-float.f2{ width:110px; height:62px; left:18px; bottom:18px; animation-delay:1.4s; }
-    .hv-float.f3{ width:74px; height:46px; right:44px; bottom:44px; animation-delay:2.3s; }
-
-    @keyframes floaty{
-      0%,100%{ transform: translateY(0) }
-      50%{ transform: translateY(-10px) }
-    }
-
-    .hero-bullets-pro{
-      padding:18px;
-      background:#fff;
-    }
-    .hero-bullets-pro .bullet{
-      color:var(--muted);
-      font-size:14px;
-    }
-    .hero-bullets-pro .bullet strong{
-      color:var(--text);
-    }
-
-    /* staged reveal for hero content */
-    .hero-stagger > *{
-      opacity:0;
-      transform: translateY(10px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .hero-stagger.in > *{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    /* Proof stats */
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:18px;
-    }
-    .card{
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:20px;
-      background:#fff;
-      box-shadow: var(--shadow);
-    }
-    .card.soft{background: var(--soft); box-shadow:none}
-    .stat-num{font-size:22px; margin:0 0 6px}
-    .small{font-size:13px; color:var(--muted)}
-
-    /* Deliverables split */
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:18px;
-      align-items:start;
-    }
-    ul.clean{margin:0; padding-left:18px; color:var(--muted)}
-    ul.clean li{margin-bottom:10px}
-
-    /* Packages */
-    .packages{display:grid; grid-template-columns: repeat(4, 1fr); gap:18px}
-    .pkg{
-      position:relative;
-      transition: transform .15s ease, border-color .15s ease;
-    }
-    .pkg:hover{transform: translateY(-3px); border-color:#d6d9e3}
-
-    /* FIX: prevent badge overlap with title */
-    .pkg.has-badge{ padding-top: 8px; }
-    .pkg.has-badge h3{ padding-right: 92px; line-height:1.25; }
-
-    .badge{
-      position:absolute; top:14px; right:14px;
-      background:var(--text); color:#fff;
-      font-size:12px; padding:6px 10px; border-radius:999px;
-    }
-    .pkg h3{margin:0 0 8px; font-size:18px}
-    .price{font-size:26px; margin:0 0 8px; letter-spacing:-.02em}
-    .once{font-size:12px; color:var(--muted); margin:0 0 14px}
-    .pkg ul{margin:0; padding-left:18px; color:var(--muted)}
-    .pkg li{margin-bottom:8px}
-    .pkg .btnrow{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
-
-    .subpack{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px solid rgba(230,232,238,.8);
-      display:grid;
-      gap:12px;
-    }
-    .subpack .opt{
-      border:1px solid rgba(230,232,238,.95);
-      border-radius:12px;
-      padding:12px;
-      background:var(--soft);
-    }
-    .subpack .opt strong{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:10px;
-      font-size:14px;
-      color:var(--text);
-    }
-    .subpack .opt .opt-meta{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.5;
-    }
-
-    /* Examples horizontal scroller */
-    .scroller-wrap{
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .scroller-head{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:14px 16px;
-      background:var(--soft);
-      border-bottom:1px solid var(--line);
-    }
-    .scroller{
-      display:flex;
-      gap:14px;
-      overflow-x:auto;
-      padding:16px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .scroller::-webkit-scrollbar{height:10px}
-    .scroller::-webkit-scrollbar-thumb{background:#d8dbe5; border-radius:999px}
-    .ex{
-      flex:0 0 auto;
-      width: 360px;
-      scroll-snap-align: start;
-      border:1px solid var(--line);
-      border-radius: 14px;
-      overflow:hidden;
-      background:#fff;
-    }
-
-    .thumb{
-      aspect-ratio: 9 / 16;
-      height: auto;
+    * {
+      box-sizing: border-box;
+      margin: 0;
       padding: 0;
-      background: #eef0f5;
-      overflow: hidden;
-      display:block;
-    }
-    .thumb img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
     }
 
-    .ex-meta{padding:12px 12px 14px}
-    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
-    .tag{
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid var(--line);
-      padding:4px 8px;
-      border-radius:999px;
-      background:#fff;
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* Process */
-    .steps{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
-    .stepnum{font-size:12px; color:var(--muted); letter-spacing:.1em}
-    .step h3{margin:8px 0 8px; font-size:16px}
-    .step p{margin:0; color:var(--muted); font-size:14px}
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(201, 166, 107, 0.12), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.05), transparent 24%),
+        radial-gradient(circle at 50% 75%, rgba(201, 166, 107, 0.08), transparent 36%),
+        linear-gradient(180deg, #09090b 0%, #0b0b10 40%, #08080a 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
 
-    /* ROI */
-    .roi{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:18px;
-      align-items:start;
+    /* Scrollbar styling for premium feel */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
-    .calc{
-      background: var(--soft);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:18px;
-    }
-    .calc .row{display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid rgba(230,232,238,.7)}
-    .calc .row:last-child{border-bottom:0}
-    .calc .row span{color:var(--muted); font-size:14px}
-    .calc .row strong{font-size:14px}
 
-    /* Team hero photo section (full-bleed) */
-    .team-hero{ padding: 0; }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0d;
+    }
 
-.team-hero-bleed{
-  width: 100%;
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  background: #000;
-  display: flex;
-  justify-content: center;
-}
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(201, 166, 107, 0.55), rgba(255, 255, 255, 0.15));
+      border-radius: 999px;
+    }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    
+    img {
+      max-width: 100%;
+      display: block;
     }
-    .team-hero-bleed::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: rgba(0,0,0,.14);
-      z-index: 2;
-      pointer-events:none;
+
+    button,
+    input,
+    textarea {
+      font: inherit;
     }
-    .team-hero-bleed::after{
-      content:"";
-      position:absolute;
-      inset:auto 0 0 0;
-      height: 42%;
-      background: linear-gradient(to top, rgba(0,0,0,.28), rgba(0,0,0,0));
-      z-index: 2;
-      pointer-events:none;
+
+    .page-bg-shift {
+      position: fixed;
+      inset: -20%;
+      pointer-events: none;
+      z-index: -3;
+      background:
+        radial-gradient(circle at var(--mx, 50%) calc(var(--my, 50%) - 10%), rgba(201, 166, 107, 0.08), transparent 26%),
+        radial-gradient(circle at calc(var(--scrollX, 50%)) calc(var(--scrollY, 40%)), rgba(255, 255, 255, 0.04), transparent 22%);
+      filter: blur(30px);
+      transform: translateZ(0);
+      transition: transform 0.3s ease-out;
     }
-    .team-hero-img{
-      width: 100%;
-      height: min(70vh, 700px);
-      display:block;
-      object-fit: cover;
-      object-position: center;
-      transform: scale(1.01);
-      filter: saturate(1.02) contrast(1.02);
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      opacity: 0.05;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.35) 0.7px, transparent 0.7px);
+      background-size: 9px 9px;
+      mix-blend-mode: soft-light;
     }
-    .team-hero-content{
-      position:absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 26px;
-      z-index: 3;
-      width: min(var(--max), 100%);
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 120px 0;
+    }
+
+    .section.compact {
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-strong);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201, 166, 107, 0.1), rgba(201, 166, 107, 0.95));
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      max-width: 11ch;
+    }
+
+    .section-title.wide {
+      max-width: 16ch;
+    }
+
+    .section-copy {
+      color: var(--text-muted);
+      font-size: 1.03rem;
+      max-width: 60ch;
+      justify-self: end;
+    }
+
+    .accent {
+      color: var(--accent-strong);
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .soft {
+      color: var(--text-soft);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+
+    .pill:hover {
+      transform: translateY(-2px);
+      border-color: rgba(201, 166, 107, 0.4);
+      background: rgba(201, 166, 107, 0.08);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
       padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      transition: var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
     }
-    .team-hero-card{
-      max-width: 720px;
-      border:1px solid rgba(255,255,255,.28);
-      background: rgba(255,255,255,.80);
-      backdrop-filter: blur(10px);
+
+    .btn-primary {
+      color: #0d0c0a;
+      background: linear-gradient(180deg, #f1d7a7 0%, #c9a66b 100%);
+      box-shadow:
+        0 16px 40px rgba(201, 166, 107, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 22px 48px rgba(201, 166, 107, 0.24),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.045);
+      border-color: rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201, 166, 107, 0.35);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      background: transparent;
+      border-color: rgba(255,255,255,0.09);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       HEADER / NAVIGATION
+       ========================= */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(9, 9, 12, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--header-height);
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), transparent 40%),
+        linear-gradient(180deg, rgba(201,166,107,0.16), rgba(255,255,255,0.05));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+      font-weight: 800;
+      color: var(--accent-strong);
+      letter-spacing: -0.04em;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-strong), transparent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hamburger {
+      display: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .hamburger:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hamburger span {
+      position: absolute;
+      left: 50%;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 999px;
+      transform: translateX(-50%);
+      transition: var(--transition);
+    }
+
+    .hamburger span:nth-child(1) { top: 18px; }
+    .hamburger span:nth-child(2) { top: 24px; }
+    .hamburger span:nth-child(3) { top: 30px; }
+
+    .hamburger.is-active span:nth-child(1) {
+      top: 24px;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .hamburger.is-active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-active span:nth-child(3) {
+      top: 24px;
+      transform: translateX(-50%) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      padding: 0 16px 18px;
+    }
+
+    .mobile-panel {
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(12,12,16,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .mobile-links,
+    .mobile-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mobile-links {
+      margin-bottom: 16px;
+    }
+
+    .mobile-links a,
+    .mobile-actions a {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+    .hero {
+      padding-top: calc(var(--header-height) + 60px);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: clip;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-kicker {
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 6.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.07em;
+      font-weight: 900;
+      max-width: 11ch;
+      text-wrap: balance;
+    }
+
+    .hero-title .line-soft {
+      color: rgba(244, 240, 232, 0.78);
+    }
+
+    .hero-description {
+      margin-top: 24px;
+      max-width: 62ch;
+      color: var(--text-muted);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .hero-stat {
+      min-width: 180px;
+      padding: 18px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .hero-stat span {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 640px;
+      display: grid;
+      place-items: center;
+      perspective: 1400px;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,0.34), transparent 26%),
+        radial-gradient(circle at 50% 50%, rgba(201,166,107,0.22), rgba(201,166,107,0.04) 56%, transparent 76%);
+      filter: blur(12px);
+      opacity: 0.9;
+      animation: orbFloat 9s ease-in-out infinite;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .hero-glow-ring {
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow:
+        0 0 0 35px rgba(255,255,255,0.015),
+        0 0 0 120px rgba(201,166,107,0.02);
+      animation: pulseRing 10s linear infinite;
+    }
+
+    .hero-stack {
+      position: relative;
+      width: min(100%, 560px);
+      aspect-ratio: 0.95;
+      transform-style: preserve-3d;
+    }
+
+    .glass-card {
+      position: absolute;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow:
+        var(--shadow-xl),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), transparent 30%, transparent 70%, rgba(201,166,107,0.08));
+      pointer-events: none;
+    }
+
+    .visual-card-main {
+      inset: 8% 10% 8% 10%;
+      transform: translateZ(20px) rotateX(10deg) rotateY(-8deg);
+    }
+
+    .visual-card-top {
+      width: 54%;
+      height: 36%;
+      top: 2%;
+      right: 0;
+      transform: translateZ(70px) rotateX(12deg) rotateY(-14deg);
+    }
+
+    .visual-card-bottom {
+      width: 48%;
+      height: 30%;
+      bottom: 2%;
+      left: 0;
+      transform: translateZ(60px) rotateX(10deg) rotateY(11deg);
+    }
+
+    .card-ui {
+      height: 100%;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ui-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .ui-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .ui-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .ui-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(201,166,107,0.12);
+      border: 1px solid rgba(201,166,107,0.22);
+      color: var(--accent-strong);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ui-title {
+      font-size: clamp(1.4rem, 1.8vw, 2rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      font-weight: 800;
+      margin-bottom: 12px;
+      max-width: 14ch;
+    }
+
+    .ui-copy {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      max-width: 36ch;
+      margin-bottom: 24px;
+    }
+
+    .ui-bars {
+      display: grid;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .ui-bars span {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(201,166,107,0.14));
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .ui-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .ui-box {
+      min-height: 110px;
       border-radius: 18px;
-      padding: 16px 18px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.18);
-    }
-    .team-hero-card h2{
-      margin:0 0 6px;
-      font-size: 18px;
-      letter-spacing: -.01em;
-    }
-    .team-hero-card p{
-      margin:0;
-      color: rgba(20,23,32,.80);
-      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      position: relative;
+      overflow: hidden;
     }
 
-    /* FAQ accordion */
-    .faq{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:18px;
-    }
-    details{
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:14px 14px;
-      background:#fff;
-      box-shadow: var(--shadow);
-    }
-    summary{
-      cursor:pointer;
-      list-style:none;
-      font-weight:600;
-      font-size:14px;
-    }
-    summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color:var(--muted); font-size:14px}
-
-    /* Footer / CTA */
-    .final-cta{
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:20px;
-      background: var(--soft);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+    .ui-box::after {
+      content: "";
+      position: absolute;
+      inset: auto 14px 14px 14px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(201,166,107,0.16), rgba(255,255,255,0.05));
     }
 
-    footer{
-      padding:40px 0;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:12px;
-      text-align:center;
+    .hero-scroll-note {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.75;
     }
 
-    /* Reveal animations */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
+    .hero-scroll-note::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .hero-scroll-note::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* =========================
+       GENERIC CARDS
+       ========================= */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      padding: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(201,166,107,0.12), transparent 28%),
+        linear-gradient(180deg, transparent 50%, rgba(255,255,255,0.025));
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.01);
+      border-color: rgba(201,166,107,0.22);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow: 0 28px 70px rgba(0,0,0,0.42);
+    }
+
+    .card h3,
+    .card h4 {
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+    }
+
+    .card p {
+      color: var(--text-muted);
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* =========================
+       PROBLEM SECTION
+       ========================= */
+    .problem-panel {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .problem-copy-card {
+      min-height: 100%;
+      padding: 42px;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+    }
+
+    .problem-copy-card h3 {
+      font-size: clamp(1.8rem, 2.5vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 0.98;
+      margin-bottom: 18px;
+      max-width: 13ch;
+    }
+
+    .problem-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .problem-list li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 14px;
+      color: var(--text-muted);
+      padding-top: 2px;
+    }
+
+    .problem-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 10px;
+      background: linear-gradient(180deg, var(--accent-strong), rgba(201,166,107,0.5));
+      box-shadow: 0 0 22px rgba(201,166,107,0.28);
+    }
+
+    .problem-side {
+      display: grid;
+      gap: 22px;
+    }
+
+    .metric-card {
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .metric-value {
+      font-size: clamp(2.4rem, 3vw, 3.6rem);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      margin-bottom: 10px;
+    }
+
+    /* =========================
+       BREAK / SOLUTION / WHY
+       ========================= */
+    .reason-card h3,
+    .reason-card h4,
+    .solution-card h3 {
+      margin-bottom: 16px;
+      font-size: 1.35rem;
+    }
+
+    .reason-number,
+    .step-number {
+      color: var(--accent-strong);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .solution-grid .card {
+      min-height: 250px;
+    }
+
+    /* =========================
+       AI STRATEGY
+       ========================= */
+    .strategy-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .strategy-panel {
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+    }
+
+    .strategy-copy {
+      padding: 38px;
+    }
+
+    .strategy-copy h3 {
+      font-size: clamp(1.9rem, 2.4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 18px;
+      max-width: 15ch;
+    }
+
+    .strategy-points {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .strategy-points li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 14px;
+      color: var(--text-muted);
+    }
+
+    .strategy-points li::before {
+      content: "✦";
+      color: var(--accent-strong);
+      opacity: 0.95;
+    }
+
+    .strategy-steps {
+      display: grid;
+      gap: 18px;
+      padding: 26px;
+      background:
+        radial-gradient(circle at top right, rgba(201,166,107,0.1), transparent 34%);
+    }
+
+    .strategy-step {
+      padding: 22px 22px 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.035);
+      transition: var(--transition);
+    }
+
+    .strategy-step:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.055);
+      border-color: rgba(201,166,107,0.18);
+    }
+
+    .strategy-step h4 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .strategy-visual {
+      margin-top: 28px;
+      position: relative;
+      min-height: 260px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(201,166,107,0.14), transparent 22%),
+        radial-gradient(circle at 75% 40%, rgba(255,255,255,0.07), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .strategy-layer {
+      position: absolute;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-lg);
+    }
+
+    .strategy-layer.one {
+      width: 54%;
+      height: 58%;
+      top: 18%;
+      left: 10%;
+      transform: rotate(-7deg);
+    }
+
+    .strategy-layer.two {
+      width: 42%;
+      height: 54%;
+      top: 12%;
+      right: 8%;
+      transform: rotate(8deg);
+    }
+
+    .strategy-layer.three {
+      width: 40%;
+      height: 28%;
+      left: 28%;
+      bottom: 10%;
+      transform: rotate(2deg);
+    }
+
+    /* =========================
+       SERVICES / PRICING
+       ========================= */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 34px 28px 28px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .pricing-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(201,166,107,0.18), transparent 26%),
+        linear-gradient(180deg, transparent 56%, rgba(255,255,255,0.025));
+      pointer-events: none;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(201,166,107,0.24);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.48);
+    }
+
+    .pricing-card.popular {
+      border-color: rgba(201,166,107,0.28);
+      background:
+        linear-gradient(180deg, rgba(201,166,107,0.09), rgba(255,255,255,0.035));
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,166,107,0.28);
+      background: rgba(201,166,107,0.12);
+      color: var(--accent-strong);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pricing-name {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pricing-label {
+      color: var(--text-soft);
+      margin-bottom: 22px;
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .price strong {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.08em;
+      font-weight: 900;
+    }
+
+    .price span {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .pricing-list {
+      display: grid;
+      gap: 14px;
+      margin: 18px 0 28px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pricing-list li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 12px;
+      color: var(--text-muted);
+    }
+
+    .pricing-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      margin-top: 10px;
+      border-radius: 50%;
+      background: var(--accent-strong);
+      box-shadow: 0 0 20px rgba(201,166,107,0.28);
+    }
+
+    .pricing-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    /* =========================
+       WEBSITE SERVICE SECTION
+       ========================= */
+    .website-service {
+      position: relative;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        radial-gradient(circle at top left, rgba(201,166,107,0.12), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+    }
+
+    .website-service-inner {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
+      padding: 36px;
+      align-items: center;
+    }
+
+    .website-copy h3 {
+      font-size: clamp(2rem, 3.2vw, 4rem);
+      letter-spacing: -0.06em;
+      line-height: 0.94;
+      margin-bottom: 18px;
+      max-width: 13ch;
+    }
+
+    .website-copy .price-line {
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin: 22px 0 18px;
+    }
+
+    .website-copy .price-line strong {
+      color: var(--white);
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+    }
+
+    .benefit-list {
+      display: grid;
+      gap: 14px;
+      margin: 24px 0 28px;
+      list-style: none;
+    }
+
+    .benefit-list li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 12px;
+      color: var(--text-muted);
+    }
+
+    .benefit-list li::before {
+      content: "•";
+      color: var(--accent-strong);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .website-visual {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      perspective: 1200px;
+    }
+
+    .screen {
+      position: absolute;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.11);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .screen:hover {
+      transform: translateY(-6px);
+    }
+
+    .screen-main {
+      width: 66%;
+      height: 74%;
+      z-index: 3;
+      transform: rotate(-4deg) translateZ(20px);
+    }
+
+    .screen-left {
+      width: 36%;
+      height: 46%;
+      left: 6%;
+      bottom: 12%;
+      z-index: 2;
+      transform: rotate(-10deg);
+    }
+
+    .screen-right {
+      width: 34%;
+      height: 42%;
+      right: 6%;
+      top: 11%;
+      z-index: 1;
+      transform: rotate(9deg);
+    }
+
+    .screen-content {
+      height: 100%;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .screen-header {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .screen-header span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .screen-hero {
+      min-height: 34%;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(201,166,107,0.18), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      color: var(--text-soft);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .screen-lines {
+      display: grid;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .screen-lines span {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.09), rgba(201,166,107,0.14));
+    }
+
+    /* =========================
+       SHOWCASE
+       ========================= */
+    .showcase-wrap {
+      position: relative;
+      min-height: 780px;
+    }
+
+    .showcase-grid {
+      position: relative;
+      min-height: 760px;
+    }
+
+    .showcase-card {
+      position: absolute;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-10px) rotate(0deg) !important;
+      border-color: rgba(201,166,107,0.22);
+    }
+
+    .showcase-card.large-1 {
+      width: 38%;
+      height: 360px;
+      top: 5%;
+      left: 4%;
+      transform: rotate(-7deg);
+    }
+
+    .showcase-card.large-2 {
+      width: 42%;
+      height: 430px;
+      top: 0;
+      right: 4%;
+      transform: rotate(6deg);
+    }
+
+    .showcase-card.mid-1 {
+      width: 31%;
+      height: 270px;
+      left: 16%;
+      bottom: 10%;
+      transform: rotate(4deg);
+    }
+
+    .showcase-card.mid-2 {
+      width: 29%;
+      height: 250px;
+      right: 16%;
+      bottom: 6%;
+      transform: rotate(-5deg);
+    }
+
+    .showcase-content {
+      height: 100%;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .placeholder-art {
+      flex: 1;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at 20% 25%, rgba(201,166,107,0.14), transparent 26%),
+        radial-gradient(circle at 75% 30%, rgba(255,255,255,0.07), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+      display: grid;
+      place-items: center;
+      color: rgba(244, 240, 232, 0.62);
+      text-align: center;
+      padding: 20px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .showcase-caption {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .showcase-caption strong {
+      font-size: 1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .showcase-caption span {
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================
+       PROCESS
+       ========================= */
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 5%;
+      right: 5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
+    }
+
+    .timeline-step {
+      position: relative;
+      z-index: 1;
+      padding: 26px 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-lg);
+    }
+
+    .timeline-step::before {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent-strong), rgba(201,166,107,0.55));
+      box-shadow: 0 0 24px rgba(201,166,107,0.28);
+      margin-bottom: 20px;
+    }
+
+    .timeline-step h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.04em;
+    }
+
+    /* =========================
+       WHY ADFRAME
+       ========================= */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .why-item {
+      min-height: 220px;
+    }
+
+    /* =========================
+       FINAL CTA
+       ========================= */
+    .cta-panel {
+      position: relative;
+      padding: 52px;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(201,166,107,0.18), transparent 24%),
+        radial-gradient(circle at 80% 35%, rgba(255,255,255,0.08), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow-xl);
+    }
+
+    .cta-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -12% -26% auto;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,166,107,0.18), transparent 62%);
+      filter: blur(18px);
+    }
+
+    .cta-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .cta-title {
+      font-size: clamp(2.2rem, 5vw, 4.9rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+      font-weight: 900;
+      max-width: 12ch;
+      margin-bottom: 18px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+    .footer {
+      padding: 42px 0 70px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.8fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer p,
+    .footer a,
+    .footer li {
+      color: var(--text-soft);
+    }
+
+    .footer-links,
+    .footer-socials {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer small {
+      display: block;
+      margin-top: 26px;
+      color: rgba(244, 240, 232, 0.42);
+    }
+
+    /* =========================
+       REVEAL ANIMATIONS
+       ========================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition:
+        opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
       will-change: opacity, transform;
     }
-    .reveal.in{
-      opacity:1;
+
+    .reveal.is-visible {
+      opacity: 1;
       transform: translateY(0);
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
-      .split{grid-template-columns:1fr}
-      .packages{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr}
-      .roi{grid-template-columns:1fr}
-      .faq{grid-template-columns:1fr}
-      .headline{font-size:38px}
-      .ex{width: 300px}
-      .hv-grid{ grid-template-columns:1fr; }
-      .team-hero-img{ height: min(56vh, 520px); }
-      .team-hero-content{ bottom: 18px; }
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+    .delay-4 { transition-delay: 0.32s; }
+
+    .hero-animate {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
-    /* Mobile nav improvement */
-    @media (max-width: 720px){
-      .nav{gap:12px}
-      .nav a{display:none}
-      .nav a.btn{display:inline-flex}
-      .brand{min-width:auto}
-      .topbar-inner{gap:10px}
-      .brand img{height:46px}
-      .topbar.shrink .brand img{height:38px}
+    .hero-animate.delay-1 { animation-delay: 0.12s; }
+    .hero-animate.delay-2 { animation-delay: 0.24s; }
+    .hero-animate.delay-3 { animation-delay: 0.36s; }
+    .hero-animate.delay-4 { animation-delay: 0.48s; }
+
+    /* =========================
+       KEYFRAMES
+       ========================= */
+    @keyframes heroIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @media (prefers-reduced-motion: reduce){
-      .hv-float{ animation:none !important; }
-      .hero-stagger > *{ transition:none !important; }
+    @keyframes orbFloat {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(10px, -16px, 0) scale(1.04);
+      }
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(0.96);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.03);
+        opacity: 0.95;
+      }
+      100% {
+        transform: scale(0.96);
+        opacity: 0.7;
+      }
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (max-width: 1180px) {
+      .section {
+        padding: 100px 0;
+      }
+
+      .hero-layout,
+      .section-head,
+      .problem-panel,
+      .strategy-layout,
+      .website-service-inner,
+      .cta-layout,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-copy {
+        justify-self: start;
+      }
+
+      .hero-visual {
+        min-height: 560px;
+      }
+
+      .pricing-grid,
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        display: none;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+
+      .showcase-wrap,
+      .showcase-grid {
+        min-height: auto;
+      }
+
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .showcase-card {
+        position: relative;
+        width: 100% !important;
+        height: 320px !important;
+        inset: auto !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 940px) {
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .hamburger,
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-bottom: 80px;
+      }
+
+      .hero-layout {
+        gap: 26px;
+      }
+
+      .hero-title {
+        max-width: 12ch;
+      }
+
+      .hero-visual {
+        min-height: 500px;
+      }
+
+      .grid-3,
+      .grid-2,
+      .grid-4,
+      .pricing-grid,
+      .why-grid,
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .website-visual {
+        min-height: 420px;
+      }
+
+      .screen-main {
+        width: 74%;
+      }
+
+      .screen-left,
+      .screen-right {
+        width: 36%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --header-height: 76px;
+      }
+
+      .container {
+        width: min(100% - 20px, var(--container));
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .hero {
+        padding-top: calc(var(--header-height) + 34px);
+      }
+
+      .hero-title,
+      .section-title,
+      .cta-title {
+        text-wrap: balance;
+      }
+
+      .hero-meta {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stat,
+      .card,
+      .pricing-card,
+      .timeline-step,
+      .problem-copy-card,
+      .cta-panel,
+      .website-service-inner {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+      }
+
+      .hero-orb {
+        width: 320px;
+        height: 320px;
+      }
+
+      .hero-glow-ring {
+        width: 380px;
+        height: 380px;
+      }
+
+      .visual-card-main {
+        inset: 10% 8%;
+      }
+
+      .visual-card-top {
+        width: 56%;
+        height: 32%;
+      }
+
+      .visual-card-bottom {
+        width: 50%;
+        height: 28%;
+      }
+
+      .website-visual {
+        min-height: 360px;
+      }
+
+      .screen-main {
+        width: 76%;
+        height: 70%;
+      }
+
+      .screen-left,
+      .screen-right {
+        width: 40%;
+        height: 36%;
+      }
+
+      .cta-panel {
+        padding: 30px 22px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions .btn,
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+      .showcase-card {
+        height: 260px !important;
+      }
+
+      .hero-scroll-note {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal,
+      .hero-animate {
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
   </style>
 </head>
-
 <body>
+  <!-- Subtle background layers for cinematic depth -->
+  <div class="page-bg-shift" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
 
-  <!-- Sticky nav -->
-  <div class="topbar" id="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#top" aria-label="Adframe Studio Vienna">
-        <img src="images/logo.png" alt="Adframe Studio Vienna" />
-      </a>
+  <!-- =========================================================
+       HEADER / NAVBAR
+       ========================================================= -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#top" class="brand" aria-label="Adframe Studio Vienna home">
+          <!-- Placeholder logo that can easily be replaced later -->
+          <div class="brand-mark">A</div>
+          <div class="brand-text">
+            <span class="brand-title">Adframe Studio Vienna</span>
+            <span class="brand-subtitle">AI Creative & Growth Studio</span>
+          </div>
+        </a>
 
-      <nav class="nav">
-        <a href="#pakete">Pakete</a>
-        <a href="#beispiele">Beispiele</a>
-        <a href="#ablauf">Ablauf</a>
-        <a class="btn" href="mailto:adframe.studio.vienna@gmail.com">E-Mail</a>
-        <!-- Header "Anfragen" führt zur Paket-Sektion -->
-        <a class="btn primary" href="#pakete">Anfragen</a>
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#ai-strategy">AI Strategy</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="nav-actions">
+            <!-- Replace placeholder links with real profiles -->
+            <a class="btn btn-ghost" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a class="btn btn-ghost" href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn btn-primary" href="#contact">Let’s Talk</a>
+          </div>
+
+          <button class="hamburger" id="hamburger" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </nav>
-    </div>
-  </div>
 
-  <!-- HERO -->
-  <section class="tight hero-section" id="top">
-    <div class="container hero">
-      <!-- LEFT -->
-      <div class="reveal hero-stagger">
-        <div class="hero-pill">Performance Ads · Creatives · Österreich</div>
-
-        <h1 class="headline">Wir helfen lokalen Unternehmen, konstant neue Kunden zu gewinnen.</h1>
-
-        <p class="subhead">
-          Wir erstellen <strong>Performance Ads + Websites/Landingpages</strong>, die aus Besuchern <strong>echte Buchungen und Leads machen</strong>.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#pakete">Pakete ansehen</a>
-          <a class="btn" href="#beispiele">Beispiele ansehen</a>
-          <a class="btn" href="mailto:adframe.studio.vienna@gmail.com">Kontakt per E-Mail</a>
-        </div>
-
-        <p class="small hero-note">
-          Noch unsicher? Auf Anfrage erstellen wir ein kostenloses Beispiel-Ad-Creative, damit du dir selbst ein Bild machen kannst.
-        </p>
-
-        <div class="hero-micro">
-          <div class="micro-item"><span class="micro-dot"></span><span><strong>&lt; 24h</strong> Antwortzeit (werktags)</span></div>
-          <div class="micro-item"><span class="micro-dot"></span><span><strong>Projektbasiert</strong> kein Abo</span></div>
-          <div class="micro-item"><span class="micro-dot"></span><span><strong>Ad-ready</strong> 9:16 / 1:1 / 4:5</span></div>
+      <div class="mobile-menu" id="mobile-menu" hidden>
+        <div class="mobile-panel">
+          <div class="mobile-links">
+            <a href="#services">Services</a>
+            <a href="#ai-strategy">AI Strategy</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="mobile-actions">
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="#contact">Let’s Talk</a>
+          </div>
         </div>
       </div>
+    </div>
+  </header>
 
-      <!-- RIGHT -->
-      <div class="reveal">
-        <div class="hero-frame">
-          <div class="hero-visual" aria-hidden="true">
-            <div class="hv-top">
-              <div class="hv-pill"></div>
-              <div class="hv-pill"></div>
-              <div class="hv-pill"></div>
+  <main>
+    <!-- =========================================================
+         HERO SECTION
+         ========================================================= -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <div class="hero-kicker hero-animate">
+              <span class="pill">Premium creative systems for modern businesses</span>
             </div>
 
-            <div class="hv-grid">
-              <div class="hv-card">
-                <div class="hv-line w80"></div>
-                <div class="hv-line w60"></div>
-                <div class="hv-chip-row">
-                  <span class="hv-chip"></span>
-                  <span class="hv-chip"></span>
+            <h1 class="hero-title hero-animate delay-1">
+              AI Creatives &
+              <span class="line-soft">Performance Websites</span>
+              for Businesses That Want to Grow
+            </h1>
+
+            <p class="hero-description hero-animate delay-2">
+              Adframe Studio Vienna builds AI-powered ad creatives and conversion-focused websites for brands that need more attention, more inquiries, and a stronger digital presence that actually moves growth forward.
+            </p>
+
+            <div class="hero-actions hero-animate delay-3">
+              <a href="#contact" class="btn btn-primary">Book a Call</a>
+              <a href="#services" class="btn btn-secondary">View Services</a>
+            </div>
+
+            <div class="hero-meta hero-animate delay-4">
+              <div class="hero-stat">
+                <strong>AI Ad Creatives</strong>
+                <span>Fast iteration, stronger hooks, sharper visual testing.</span>
+              </div>
+              <div class="hero-stat">
+                <strong>Performance Websites</strong>
+                <span>Built to guide attention, reduce friction, and convert.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual hero-animate delay-2" id="heroVisual" aria-hidden="true">
+            <div class="hero-orb"></div>
+            <div class="hero-glow-ring"></div>
+
+            <!-- Layered glass cards create depth without heavy 3D -->
+            <div class="hero-stack">
+              <div class="glass-card visual-card-main">
+                <div class="card-ui">
+                  <div class="ui-topbar">
+                    <div class="ui-dots"><span></span><span></span><span></span></div>
+                    <div class="ui-chip">Adframe System</div>
+                  </div>
+                  <div class="ui-title">Creative velocity with premium execution.</div>
+                  <div class="ui-copy">
+                    Strategy, messaging, visual direction, testing logic, and AI-assisted production combined into one sharp growth asset stack.
+                  </div>
+                  <div class="ui-grid">
+                    <div class="ui-box"></div>
+                    <div class="ui-box"></div>
+                    <div class="ui-box"></div>
+                    <div class="ui-box"></div>
+                  </div>
                 </div>
               </div>
-              <div class="hv-card">
-                <div class="hv-line w70"></div>
-                <div class="hv-line w50"></div>
-                <div class="hv-chip-row">
-                  <span class="hv-chip"></span>
-                  <span class="hv-chip"></span>
+
+              <div class="glass-card visual-card-top">
+                <div class="card-ui">
+                  <div class="ui-topbar">
+                    <div class="ui-chip">Creative Preview</div>
+                  </div>
+                  <div class="ui-bars">
+                    <span style="width: 92%;"></span>
+                    <span style="width: 70%;"></span>
+                    <span style="width: 84%;"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card visual-card-bottom">
+                <div class="card-ui">
+                  <div class="ui-topbar">
+                    <div class="ui-chip">Website Flow</div>
+                  </div>
+                  <div class="ui-bars">
+                    <span style="width: 86%;"></span>
+                    <span style="width: 64%;"></span>
+                    <span style="width: 74%;"></span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div class="hv-cta">
-              <div class="hv-btn"></div>
-              <div class="hv-btn ghost"></div>
+        <div class="hero-scroll-note">Scroll to explore</div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROBLEM SECTION
+         ========================================================= -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">The Real Problem</div>
+            <h2 class="section-title wide">
+              Most businesses do not lack potential. <span class="accent">They lack assets that perform.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            Growth rarely stalls because the product is weak. It usually stalls because the message is forgettable, the creatives do not stop attention, and the website does not guide visitors toward action with enough clarity, trust, and speed.
+          </p>
+        </div>
+
+        <div class="problem-panel">
+          <div class="problem-copy-card reveal">
+            <div class="card-tag">Where momentum gets lost</div>
+            <h3>Your business can be solid and still feel invisible online.</h3>
+            <p class="muted">
+              Many brands invest in ads, design, or websites independently, but still end up with fragmented execution. The result looks acceptable on the surface, yet fails to create enough belief, clarity, and conversion when it matters.
+            </p>
+
+            <ul class="problem-list">
+              <li>Ads may look polished, but they do not create enough curiosity, trust, or urgency to perform consistently.</li>
+              <li>Websites may appear modern, yet they fail to structure the offer in a way that drives real inquiries.</li>
+              <li>Messaging becomes too generic, making the business blend in with every competitor in the market.</li>
+              <li>Testing is too slow, so weak creatives stay live too long and strong angles are discovered too late.</li>
+              <li>The digital presence feels outdated, which lowers perceived quality before a conversation even begins.</li>
+            </ul>
+          </div>
+
+          <div class="problem-side">
+            <div class="card metric-card reveal delay-1">
+              <div class="card-tag">Creative friction</div>
+              <div class="metric-value">Weak creative kills attention first.</div>
+              <p>Without strong hooks and clear angles, campaigns never get enough momentum to compound.</p>
             </div>
 
-            <div class="hv-float f1"></div>
-            <div class="hv-float f2"></div>
-            <div class="hv-float f3"></div>
-          </div>
-
-          <div class="hero-bullets hero-bullets-pro">
-            <div class="bullet"><span class="dot"></span><span><strong>Sechsstelliger Umsatz</strong> begleitet durch Performance Ads & Creatives</span></div>
-            <div class="bullet"><span class="dot"></span><span><strong>Performance-first</strong> Hooks, Angebot & CTA – für saubere Tests</span></div>
-            <div class="bullet"><span class="dot"></span><span><strong>Schnelle Umsetzung</strong> klare Prozesse, kurze Feedback-Loops</span></div>
-            <div class="bullet"><span class="dot"></span><span><strong>Für lokale Anbieter</strong> optimiert (Beauty, Gastro, Services, Bau & Handwerk)</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF -->
-  <section>
-    <div class="container reveal">
-      <h2 class="section-title">Warum Adframe Studio legit ist</h2>
-      <p class="section-kicker">
-        Klarer Fokus auf Kundengewinnung, transparente Arbeitsweise und ad-ready Assets — ohne unnötige Komplexität.
-      </p>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="stat-num">€500.000+</div>
-          <div class="small">Mitwirkung an Umsatz durch Performance Ads & Creatives</div>
-        </div>
-        <div class="card">
-          <div class="stat-num">&lt; 24h</div>
-          <div class="small">Antwortzeit (werktags), damit Projekte nicht liegen bleiben</div>
-        </div>
-        <div class="card">
-          <div class="stat-num">Remote</div>
-          <div class="small">Kein Shooting nötig — schneller Output, sauber testbar</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DELIVERABLES -->
-  <section>
-    <div class="container split reveal">
-      <div>
-        <h2 class="section-title">Was du bekommst</h2>
-        <p class="section-kicker">
-          Konkrete Deliverables, die du direkt in Ads nutzen kannst — inklusive Hooks & Varianten.
-        </p>
-        <ul class="clean">
-          <li>Kurzvideo-Ads (6–15s) für Reels/Stories</li>
-          <li>Bild-Ads (Feed/Story) mit klarer Message</li>
-          <li>Hook-Varianten (mehrere Einstiege pro Angebot)</li>
-          <li>Formate: 9:16, 1:1, 4:5</li>
-          <li>1 Revision inklusive (je nach Paket)</li>
-        </ul>
-      </div>
-
-      <div class="card soft">
-        <h3 style="margin:0 0 10px; font-size:16px;">Wofür es ideal ist</h3>
-        <ul class="clean">
-          <li>Beauty & Wellness (Buchungen/Anfragen)</li>
-          <li>Gastro (Reservierungen, Specials, Events)</li>
-          <li>Lokale Services (Leads/Termine)</li>
-          <li>Bau & Handwerk (Anfragen/Anrufe)</li>
-        </ul>
-        <p class="small" style="margin-top:12px;">
-          Wir sind kein Filmstudio. Fokus ist: klare Ads & klare Angebote, die testbar sind und Anfragen auslösen sollen.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section id="pakete">
-    <div class="container reveal">
-      <h2 class="section-title">Pakete</h2>
-      <p class="section-kicker">Einmalige Zahlung. Kein Abo. Keine Bindung.</p>
-
-      <div class="packages">
-        <!-- PACKAGE 1 -->
-        <div class="card pkg">
-          <h3>Starter Ads</h3>
-          <div class="price">€349</div>
-          <div class="once">Einmalige Zahlung</div>
-          <ul>
-            <li><strong>10 Bild-Ads</strong> (9:16 / 1:1 / 4:5)</li>
-            <li><strong>2 Kurzvideo-Ads</strong> (6–12s)</li>
-            <li>Hook/Angle-Varianten für Tests</li>
-            <li>1 Revision</li>
-            <li>Delivery: 3–5 Werktage</li>
-          </ul>
-          <div class="btnrow">
-            <a class="btn" href="https://forms.gle/zatrjJCA8f4Ki8ro7" target="_blank" rel="noreferrer">Anfragen</a>
-            <a class="btn" href="#beispiele">Beispiele</a>
-          </div>
-        </div>
-
-        <!-- PACKAGE 2 -->
-        <div class="card pkg has-badge">
-          <span class="badge">Best Value</span>
-          <h3>Growth Ads</h3>
-          <div class="price">€449</div>
-          <div class="once">Einmalige Zahlung</div>
-          <ul>
-            <li><strong>20 Bild-Ads</strong> (mehr Varianten/Angles)</li>
-            <li><strong>4 Kurzvideo-Ads</strong> (6–15s)</li>
-            <li>Mehr Hooks + CTAs für A/B Tests</li>
-            <li>1 Revision</li>
-            <li>Delivery: 3–6 Werktage</li>
-          </ul>
-          <div class="btnrow">
-            <a class="btn primary" href="https://forms.gle/zatrjJCA8f4Ki8ro7" target="_blank" rel="noreferrer">Anfragen</a>
-            <a class="btn" href="#beispiele">Beispiele</a>
-          </div>
-        </div>
-
-        <!-- PACKAGE 3 -->
-        <div class="card pkg">
-          <h3>Scale Ads</h3>
-          <div class="price">€799</div>
-          <div class="once">Einmalige Zahlung</div>
-          <ul>
-            <li><strong>30 Bild-Ads</strong> (full testing library)</li>
-            <li><strong>10 Kurzvideo-Ads</strong> (6–15s)</li>
-            <li>Mehr Offer-Angles + Retargeting Varianten</li>
-            <li>1 Revision</li>
-            <li>Delivery: 5–10 Werktage</li>
-          </ul>
-          <div class="btnrow">
-            <a class="btn" href="https://forms.gle/zatrjJCA8f4Ki8ro7" target="_blank" rel="noreferrer">Anfragen</a>
-            <a class="btn" href="#beispiele">Beispiele</a>
-          </div>
-        </div>
-
-        <!-- PACKAGE 4 (WEBSITE) - UPDATED -->
-        <div class="card pkg">
-          <h3>Lead Website</h3>
-          <div class="price">ab €499</div>
-          <div class="once">Einmalige Zahlung <span class="muted">+ €29/Monat Hosting & Betreuung</span></div>
-          <ul>
-            <li>Mobile-first, schnell, clean</li>
-            <li>CTA: Anruf / WhatsApp / Formular</li>
-            <li>Hosting + Updates: <strong>€29/Monat</strong></li>
-          </ul>
-
-          <div class="subpack">
-            <div class="opt">
-              <strong>
-                <span>Anfrageseite (1 Seite)</span>
-                <span>€499</span>
-              </strong>
-              <div class="opt-meta">1 Landingpage · klare CTAs · Maps · schnelle Veröffentlichung · inkl. Hosting/Betreuung €29/Monat</div>
-            </div>
-            <div class="opt">
-              <strong>
-                <span>Business Website</span>
-                <span>€999</span>
-              </strong>
-              <div class="opt-meta">Start · Leistungen · Kontakt · Basis SEO · Vertrauen & Anfragen · inkl. Hosting/Betreuung €29/Monat</div>
+            <div class="card metric-card reveal delay-2">
+              <div class="card-tag">Website friction</div>
+              <div class="metric-value">Beautiful is not enough.</div>
+              <p>A website must lead, frame value, remove doubt, and create action — not just look good in screenshots.</p>
             </div>
           </div>
-
-          <div class="btnrow">
-            <a class="btn" href="https://forms.gle/rJUnV6pK9EkdN5uZ6" target="_blank" rel="noreferrer">Anfragen</a>
-            <a class="btn" href="#ablauf">Ablauf</a>
-          </div>
         </div>
       </div>
+    </section>
 
-      <p class="small" style="margin-top:14px;">
-        Die Website kann einmalig erstellt und übergeben werden (kein Hosting-Zwang). Optional bieten wir Hosting & laufende Betreuung für €29/Monat an.
-      </p>
-    </div>
-  </section>
-<!-- PART 3/4 -->
-  <!-- EXAMPLES -->
-  <section id="beispiele">
-    <div class="container reveal">
-      <h2 class="section-title">Beispiele</h2>
-      <p class="section-kicker">
-        Beispiele für Ads & Creatives, die auf Anfragen, Buchungen und Leads ausgelegt sind.
-      </p>
-
-      <div class="scroller-wrap">
-        <div class="scroller-head">
-          <div class="small">Swipe/Scroll →</div>
-          <div class="small"></div>
+    <!-- =========================================================
+         WHY GROWTH BREAKS SECTION
+         ========================================================= -->
+    <section class="section compact" id="growth-breaks">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Why Growth Breaks</div>
+            <h2 class="section-title wide">
+              The biggest growth problems are usually <span class="accent">structural, not random.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            When creative quality, testing speed, and website conversion logic are disconnected, performance becomes inconsistent. These are the failure points that quietly reduce results.
+          </p>
         </div>
 
-        <div class="scroller" aria-label="Beispiele Scroller">
-          <!-- BEAUTY -->
-          <article class="ex">
-            <div class="thumb"><img src="images/beauty.png" alt="Beauty – Concept Example" /></div>
-            <div class="ex-meta">
-              <strong>Beauty – Concept Example</strong>
-              <div class="tags">
-                <span class="tag">Story 9:16</span>
-                <span class="tag">Buchung</span>
+        <div class="grid-3">
+          <article class="card reason-card reveal">
+            <span class="reason-number">01</span>
+            <h3>Weak creative direction</h3>
+            <p>Businesses often publish assets that are visually fine but strategically thin, with no compelling hook or memorable angle.</p>
+          </article>
+
+          <article class="card reason-card reveal delay-1">
+            <span class="reason-number">02</span>
+            <h3>No testing culture</h3>
+            <p>Without rapid iterations, brands are forced to guess what works instead of systematically learning from stronger variations.</p>
+          </article>
+
+          <article class="card reason-card reveal delay-2">
+            <span class="reason-number">03</span>
+            <h3>Poor website conversion flow</h3>
+            <p>Traffic arrives, but the structure does not reduce friction, build trust, or guide users toward a clear next step.</p>
+          </article>
+
+          <article class="card reason-card reveal">
+            <span class="reason-number">04</span>
+            <h3>Unclear offer presentation</h3>
+            <p>If the value proposition is vague, the market does not understand why this business deserves attention now.</p>
+          </article>
+
+          <article class="card reason-card reveal delay-1">
+            <span class="reason-number">05</span>
+            <h3>Slow production cycles</h3>
+            <p>By the time the next creative is ready, the market has already moved and performance opportunities are lost.</p>
+          </article>
+
+          <article class="card reason-card reveal delay-2">
+            <span class="reason-number">06</span>
+            <h3>No AI leverage</h3>
+            <p>Ignoring AI means slower adaptation, fewer tested angles, and less speed where modern growth now demands it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SOLUTION SECTION
+         ========================================================= -->
+    <section class="section" id="solution">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">The Solution</div>
+            <h2 class="section-title wide">
+              Adframe Studio Vienna creates <span class="accent">the assets your growth depends on.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            We combine AI-assisted speed with human-led strategy, messaging, and premium visual execution — so your business does not just look more modern, it performs with more intention.
+          </p>
+        </div>
+
+        <div class="grid-2 solution-grid">
+          <article class="card solution-card reveal">
+            <div class="card-tag">AI Ad Creatives</div>
+            <h3>Stronger hooks, faster iterations, better testing logic.</h3>
+            <p>
+              We create ad assets built for performance environments — not generic visuals. That means sharper angles, variation-ready concepts, and assets designed to help brands learn faster and scale what resonates.
+            </p>
+          </article>
+
+          <article class="card solution-card reveal delay-1">
+            <div class="card-tag">AI Performance Websites</div>
+            <h3>Clearer positioning, higher trust, and stronger conversion flow.</h3>
+            <p>
+              We design websites and landing pages that do more than look premium. They frame the offer, direct attention, reduce doubt, and make taking action feel obvious.
+            </p>
+          </article>
+
+          <article class="card solution-card reveal">
+            <div class="card-tag">Premium Execution</div>
+            <h3>Visual quality that elevates how your business is perceived.</h3>
+            <p>
+              Growth is easier when the market instantly feels credibility. We focus on modern visual structure, sophisticated typography, and high-end digital presentation.
+            </p>
+          </article>
+
+          <article class="card solution-card reveal delay-1">
+            <div class="card-tag">Modern Delivery</div>
+            <h3>Fast enough for today’s pace, precise enough for premium brands.</h3>
+            <p>
+              AI gives us speed. Strategy keeps that speed useful. The result is a more responsive creative system without sacrificing judgment, coherence, or quality.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         OUR AI STRATEGY SECTION
+         ========================================================= -->
+    <section class="section" id="ai-strategy">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Our AI Strategy</div>
+            <h2 class="section-title wide">
+              AI is our edge. <span class="accent">Quality remains human-led.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            We do not use AI as a cheap shortcut. We use it to unlock speed, iteration, testing depth, and creative precision — while keeping strategic decisions, visual standards, and conversion logic under expert control.
+          </p>
+        </div>
+
+        <div class="strategy-layout">
+          <div class="strategy-panel reveal">
+            <div class="strategy-copy">
+              <div class="card-tag">Why our process feels different</div>
+              <h3>AI supports execution. It does not replace judgment.</h3>
+              <p class="muted">
+                The real advantage is not just producing more assets. It is producing smarter variations, faster learning loops, and more refined output around a clear strategic direction.
+              </p>
+
+              <ul class="strategy-points">
+                <li>Strategy defines the message, market angle, and creative priorities first.</li>
+                <li>AI accelerates ideation, variation building, and production speed.</li>
+                <li>Human review shapes tone, visual quality, and brand perception.</li>
+                <li>Testing logic informs what deserves more attention and refinement.</li>
+                <li>Conversion thinking connects every creative asset back to business outcomes.</li>
+              </ul>
+
+              <!-- Visual placeholder system that can later be replaced -->
+              <div class="strategy-visual" aria-hidden="true">
+                <div class="strategy-layer one"></div>
+                <div class="strategy-layer two"></div>
+                <div class="strategy-layer three"></div>
               </div>
+            </div>
+          </div>
+
+          <div class="strategy-panel reveal delay-1">
+            <div class="strategy-steps">
+              <article class="strategy-step">
+                <span class="step-number">Step 01</span>
+                <h4>Strategic framing</h4>
+                <p class="muted">We clarify the offer, the audience, the conversion goal, and the key message the market needs to understand immediately.</p>
+              </article>
+
+              <article class="strategy-step">
+                <span class="step-number">Step 02</span>
+                <h4>Message + angle development</h4>
+                <p class="muted">Hooks, pain points, benefits, objections, and offer angles are structured into creative-ready directions with testing potential.</p>
+              </article>
+
+              <article class="strategy-step">
+                <span class="step-number">Step 03</span>
+                <h4>AI-assisted creative production</h4>
+                <p class="muted">We produce variations faster, expand concepts intelligently, and build multiple formats without losing cohesion or standard.</p>
+              </article>
+
+              <article class="strategy-step">
+                <span class="step-number">Step 04</span>
+                <h4>Human quality control</h4>
+                <p class="muted">Every asset is filtered through design judgment, conversion logic, and brand-level refinement before delivery.</p>
+              </article>
+
+              <article class="strategy-step">
+                <span class="step-number">Step 05</span>
+                <h4>Iterate with intent</h4>
+                <p class="muted">The goal is not more content for the sake of it. The goal is faster learning, sharper decision-making, and better growth assets over time.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICES SECTION
+         ========================================================= -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Services</div>
+            <h2 class="section-title wide">
+              AI creative packages built for <span class="accent">attention, testing, and scale.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            Our ad creative packages are designed for businesses that need better assets, stronger variation systems, and faster execution without compromising on perception or clarity.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card reveal">
+            <div class="pricing-name">AI Ad Creative — Starter</div>
+            <div class="pricing-label">For brands that need a sharper creative foundation.</div>
+
+            <div class="price">
+              <strong>€790</strong>
+              <span>per package</span>
+            </div>
+
+            <ul class="pricing-list">
+              <li>6 Ad Creatives</li>
+              <li>3 Video Ads</li>
+              <li>3 Image Ads</li>
+              <li>3 Hook Variations</li>
+              <li>Meta & Instagram Formats</li>
+              <li>Delivery in 5–7 Days</li>
+            </ul>
+
+            <div class="pricing-footer">
+              <span class="soft">Fast entry into better testing</span>
+              <a href="#contact" class="btn btn-secondary">Choose Starter</a>
             </div>
           </article>
 
-          <!-- GASTRO -->
-          <article class="ex">
-            <div class="thumb"><img src="images/gastro.png" alt="Gastro – Concept Example" /></div>
-            <div class="ex-meta">
-              <strong>Gastro – Concept Example</strong>
-              <div class="tags">
-                <span class="tag">Story 9:16</span>
-                <span class="tag">Reservierung</span>
-              </div>
+          <article class="pricing-card popular reveal delay-1">
+            <div class="popular-badge">Most Popular</div>
+            <div class="pricing-name">AI Ad Creative — Growth</div>
+            <div class="pricing-label">For businesses that want more range and stronger testing coverage.</div>
+
+            <div class="price">
+              <strong>€1.490</strong>
+              <span>per package</span>
+            </div>
+
+            <ul class="pricing-list">
+              <li>12 Ad Creatives</li>
+              <li>Video + Image Ads</li>
+              <li>Multiple Hooks & Angles</li>
+              <li>Reels / Feed / Stories Formats</li>
+              <li>Creative Testing Variants</li>
+              <li>Delivery in 5 Days</li>
+            </ul>
+
+            <div class="pricing-footer">
+              <span class="soft">Best balance of depth and speed</span>
+              <a href="#contact" class="btn btn-primary">Choose Growth</a>
             </div>
           </article>
 
-          <!-- SERVICE -->
-          <article class="ex">
-            <div class="thumb"><img src="images/service.png" alt="Service – Concept Example" /></div>
-            <div class="ex-meta">
-              <strong>Service – Concept Example</strong>
-              <div class="tags">
-                <span class="tag">Lead</span>
-                <span class="tag">Termin</span>
-              </div>
+          <article class="pricing-card reveal delay-2">
+            <div class="pricing-name">AI Ad Creative — Scale</div>
+            <div class="pricing-label">For brands that need velocity, volume, and fast creative expansion.</div>
+
+            <div class="price">
+              <strong>€2.990</strong>
+              <span>per package</span>
+            </div>
+
+            <ul class="pricing-list">
+              <li>25 Ad Creatives</li>
+              <li>Video + Image Ads</li>
+              <li>Multiple Hook Variants</li>
+              <li>Problem / Solution / Offer Angles</li>
+              <li>Meta & TikTok Formats</li>
+              <li>Priority Delivery in 3–4 Days</li>
+            </ul>
+
+            <div class="pricing-footer">
+              <span class="soft">Built for aggressive testing cycles</span>
+              <a href="#contact" class="btn btn-secondary">Choose Scale</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
 
-          <!-- BAU / HANDWERK -->
-          <article class="ex">
-            <div class="thumb"><img src="images/bau.png" alt="Bau/Handwerk – Concept Example" /></div>
-            <div class="ex-meta">
-              <strong>Bau/Handwerk – Concept Example</strong>
-              <div class="tags">
-                <span class="tag">Anruf</span>
-                <span class="tag">Anfrage</span>
+    <!-- =========================================================
+         AI PERFORMANCE WEBSITE SECTION
+         ========================================================= -->
+    <section class="section" id="performance-website">
+      <div class="container">
+        <div class="website-service reveal">
+          <div class="website-service-inner">
+            <div class="website-copy">
+              <div class="eyebrow">AI Performance Website</div>
+              <h3>Websites should not just look modern. They should lead, convince, and convert.</h3>
+              <p class="muted">
+                Adframe Studio Vienna creates AI Performance Websites that combine strong visual presence with clear conversion structure. Every section is designed to reduce hesitation, sharpen the offer, and move visitors toward inquiry or booking.
+              </p>
+
+              <div class="price-line">
+                Starting from <strong>€2.490</strong>
               </div>
-              <div class="small" style="margin-top:8px;">*ohne irreführende Versprechen</div>
+
+              <ul class="benefit-list">
+                <li>Modern AI-optimized landing page structure</li>
+                <li>Conversion-focused hierarchy and messaging flow</li>
+                <li>Mobile optimization across key breakpoints</li>
+                <li>Fast-loading, clean, and scalable front-end execution</li>
+                <li>Clear CTA placement throughout the experience</li>
+                <li>Lead form or booking integration included</li>
+              </ul>
+
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Request Website Project</a>
+                <a href="#showcase" class="btn btn-secondary">View Visual Section</a>
+              </div>
             </div>
+
+            <!-- Mockup-style placeholder screens for future replacement -->
+            <div class="website-visual" aria-hidden="true">
+              <div class="screen screen-left">
+                <div class="screen-content">
+                  <div class="screen-header"><span></span><span></span><span></span></div>
+                  <div class="screen-hero">Website Frame</div>
+                  <div class="screen-lines">
+                    <span style="width: 90%;"></span>
+                    <span style="width: 76%;"></span>
+                    <span style="width: 66%;"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="screen screen-main">
+                <div class="screen-content">
+                  <div class="screen-header"><span></span><span></span><span></span></div>
+                  <div class="screen-hero">AI Performance Landing Page</div>
+                  <div class="screen-lines">
+                    <span style="width: 96%;"></span>
+                    <span style="width: 88%;"></span>
+                    <span style="width: 80%;"></span>
+                    <span style="width: 68%;"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="screen screen-right">
+                <div class="screen-content">
+                  <div class="screen-header"><span></span><span></span><span></span></div>
+                  <div class="screen-hero">Mobile View</div>
+                  <div class="screen-lines">
+                    <span style="width: 92%;"></span>
+                    <span style="width: 74%;"></span>
+                    <span style="width: 56%;"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         VISUAL / SHOWCASE SECTION
+         ========================================================= -->
+    <section class="section" id="showcase">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Visual Showcase</div>
+            <h2 class="section-title wide">
+              Built with depth, clarity, and a <span class="accent">premium visual language.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            These are intentional placeholders designed for easy replacement later. The layered structure creates a high-end presentation now, while keeping the system flexible for future case studies, campaign previews, or website screens.
+          </p>
+        </div>
+
+        <div class="showcase-wrap reveal">
+          <div class="showcase-grid" aria-label="Visual placeholder showcase">
+            <article class="showcase-card large-1" data-parallax="12">
+              <div class="showcase-content">
+                <div class="placeholder-art">Project Visual 01</div>
+                <div class="showcase-caption">
+                  <strong>Ad Creative Direction</strong>
+                  <span>Visual Layer</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="showcase-card large-2" data-parallax="-10">
+              <div class="showcase-content">
+                <div class="placeholder-art">Website Frame</div>
+                <div class="showcase-caption">
+                  <strong>Performance Website Concept</strong>
+                  <span>Screen System</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="showcase-card mid-1" data-parallax="8">
+              <div class="showcase-content">
+                <div class="placeholder-art">Creative Preview</div>
+                <div class="showcase-caption">
+                  <strong>Campaign Asset Variation</strong>
+                  <span>Testing Ready</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="showcase-card mid-2" data-parallax="-7">
+              <div class="showcase-content">
+                <div class="placeholder-art">Project Visual 02</div>
+                <div class="showcase-caption">
+                  <strong>Luxury Brand Presentation</strong>
+                  <span>Placeholder</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROCESS / HOW WE WORK
+         ========================================================= -->
+    <section class="section compact" id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Process</div>
+            <h2 class="section-title wide">
+              A clean process built for <span class="accent">speed, clarity, and execution quality.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            Our workflow is designed to keep momentum high while ensuring the strategic foundation is clear before production starts.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-step reveal">
+            <span class="step-number">01</span>
+            <h3>Discovery</h3>
+            <p class="muted">We identify the offer, audience, positioning, pain points, and the conversion goal that matters most.</p>
           </article>
 
+          <article class="timeline-step reveal delay-1">
+            <span class="step-number">02</span>
+            <h3>Strategy</h3>
+            <p class="muted">We define the message hierarchy, creative angles, and content structure required for stronger market clarity.</p>
+          </article>
+
+          <article class="timeline-step reveal delay-2">
+            <span class="step-number">03</span>
+            <h3>Creative Direction</h3>
+            <p class="muted">We shape the visual system, hooks, offers, references, and stylistic decisions that frame the work.</p>
+          </article>
+
+          <article class="timeline-step reveal delay-3">
+            <span class="step-number">04</span>
+            <h3>Production</h3>
+            <p class="muted">Assets are built with AI-supported speed and human-led refinement for a premium final result.</p>
+          </article>
+
+          <article class="timeline-step reveal delay-4">
+            <span class="step-number">05</span>
+            <h3>Launch / Delivery</h3>
+            <p class="muted">You receive ready-to-use assets designed to improve presence, testing capacity, and conversion performance.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROCESS -->
-  <section id="ablauf">
-    <div class="container reveal">
-      <h2 class="section-title">Ablauf</h2>
-      <p class="section-kicker">Ein klarer Prozess, damit du schnell testen kannst.</p>
-
-      <div class="steps">
-        <div class="card step">
-          <div class="stepnum">01</div>
-          <h3>Brief (5 Minuten)</h3>
-          <p>Angebot, Zielgruppe, Stil. Optional: vorhandene Fotos/Videos.</p>
+    <!-- =========================================================
+         WHY ADFRAME STUDIO VIENNA
+         ========================================================= -->
+    <section class="section" id="why-adframe">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Why Adframe Studio Vienna</div>
+            <h2 class="section-title wide">
+              Not a generic agency. <span class="accent">A focused growth asset studio.</span>
+            </h2>
+          </div>
+          <p class="section-copy">
+            We are built around a narrow and valuable idea: businesses grow faster when their creative assets and their website work together under one modern, performance-aware system.
+          </p>
         </div>
-        <div class="card step">
-          <div class="stepnum">02</div>
-          <h3>Produktion</h3>
-          <p>Creatives + Hooks + Varianten. Ad-ready für deine Kanäle.</p>
-        </div>
-        <div class="card step">
-          <div class="stepnum">03</div>
-          <h3>Delivery & Revision</h3>
-          <p>Finale Dateien + 1 Anpassungsrunde (je nach Paket).</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- TEAM HERO PHOTO -->
-  <section class="team-hero reveal" aria-label="Team & Zusammenarbeit">
-    <div class="team-hero-bleed">
-      <img class="team-hero-img" src="images/teamfoto.png" alt="Adframe Studio Vienna Team" />
-      <div class="team-hero-content">
-        <div class="team-hero-card">
-          <h2>Zusammenarbeit auf Augenhöhe – klar, direkt, performance-orientiert.</h2>
-          <p>Kein anonymes Netzwerk. Klare Ansprechpartner, saubere Prozesse und schnelle Umsetzung – österreichweit.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="why-grid">
+          <article class="card why-item reveal">
+            <div class="card-tag">Specialized</div>
+            <h3>Focused instead of generic</h3>
+            <p>We do not try to be everything. We focus on AI creatives and AI performance websites because those assets directly influence growth.</p>
+          </article>
 
-  <!-- ROI LOGIC -->
-  <section>
-    <div class="container roi reveal">
-      <div>
-        <h2 class="section-title">Warum das wirtschaftlich Sinn macht</h2>
-        <p class="section-kicker">
-          Gute Creatives helfen, mehr relevante Anfragen zu erzeugen. Keine Versprechen — aber ein klarer Test-Ansatz.
-        </p>
-        <ul class="clean">
-          <li>Mehr Hooks → mehr Tests → schnellerer Lernprozess</li>
-          <li>Ein Paket liefert Assets für mehrere Kampagnen/Angebote</li>
-          <li>Klare Kommunikation reduziert Missverständnisse & schlechte Leads</li>
-        </ul>
-      </div>
+          <article class="card why-item reveal delay-1">
+            <div class="card-tag">Performance-first</div>
+            <h3>Built for business outcomes</h3>
+            <p>Every decision is informed by messaging strength, conversion logic, visual trust, and how the asset performs in real customer journeys.</p>
+          </article>
 
-      <div class="calc">
-        <div class="row"><span>Ø Wert pro Neukunde</span><strong>€300</strong></div>
-        <div class="row"><span>Zusätzliche Neukunden/Monat (realistisch)</span><strong>3–7</strong></div>
-        <div class="row"><span>Monatliches Potenzial</span><strong>€900 – €2.100</strong></div>
-        <div class="row"><span>Wenn 2 Monate hält</span><strong>€1.800 – €4.200</strong></div>
-        <div class="small" style="margin-top:10px;">
-          Rechne mit deinem echten Kundenwert (z.B. Buchung/Termin). Ziel: saubere Tests, bessere Leads und planbarer Output.
+          <article class="card why-item reveal delay-2">
+            <div class="card-tag">AI-powered</div>
+            <h3>Faster without becoming careless</h3>
+            <p>We use AI to improve velocity and variation depth, not to lower standards or flood your brand with disposable output.</p>
+          </article>
+
+          <article class="card why-item reveal">
+            <div class="card-tag">Premium execution</div>
+            <h3>High-end look and feel</h3>
+            <p>Perception matters. We create assets that feel modern, elevated, and aligned with businesses that want stronger authority online.</p>
+          </article>
+
+          <article class="card why-item reveal delay-1">
+            <div class="card-tag">Fast delivery</div>
+            <h3>Speed that supports momentum</h3>
+            <p>Strong ideas lose power when execution drags. Our process is structured to move decisively while staying controlled and polished.</p>
+          </article>
+
+          <article class="card why-item reveal delay-2">
+            <div class="card-tag">Clear communication</div>
+            <h3>Simple, direct, reliable</h3>
+            <p>We keep the process organized, transparent, and business-oriented so the work feels sharp from first contact to final delivery.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-<!-- PART 4/4 -->
-  <!-- FAQ -->
-  <section>
-    <div class="container reveal">
-      <h2 class="section-title">FAQ</h2>
-      <p class="section-kicker">Die häufigsten Fragen — kurz beantwortet.</p>
+    <!-- =========================================================
+         FINAL CTA SECTION
+         ========================================================= -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <div class="cta-layout">
+            <div>
+              <div class="eyebrow">Let’s Talk</div>
+              <h2 class="cta-title">Let’s build the assets your growth actually needs.</h2>
+              <p class="muted" style="max-width: 56ch;">
+                If your business needs stronger creatives, a higher-converting website, or a sharper digital presence overall, Adframe Studio Vienna is built for exactly that.
+              </p>
+            </div>
 
-      <div class="faq">
-        <details>
-          <summary>Brauchen wir ein Shooting oder Vor-Ort-Dreh?</summary>
-          <p>Nein. Wir arbeiten remote mit ad-optimierten Visuals und/oder deinem vorhandenen Material.</p>
-        </details>
-        <details>
-          <summary>Was brauchst du von mir, um zu starten?</summary>
-          <p>Angebot, Zielgruppe, Öffnungszeiten/Location (falls relevant) und optional bestehende Inhalte/Branding.</p>
-        </details>
-        <details>
-          <summary>Wie schnell ist die Lieferung?</summary>
-          <p>Je nach Paket 3–10 Werktage. Für Websites: Anfrageseite meist 3–6 Werktage, Mini-Website 5–10 Werktage.</p>
-        </details>
-        <details>
-          <summary>Sind das echte Kundenbeispiele?</summary>
-          <p>Sofern nicht anders gekennzeichnet, können Beispiele „Concept Examples“ sein (ohne Kundendaten/Logos).</p>
-        </details>
+            <div class="cta-actions">
+              <!-- Replace with your real links -->
+              <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">WhatsApp</a>
+              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Instagram</a>
+              <a href="mailto:hello@adframestudiovienna.com" class="btn btn-primary">Book a Call</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- CONTACT -->
-  <section id="kontakt">
-    <div class="container reveal">
-      <h2 class="section-title">Kontakt</h2>
-      <p class="section-kicker">
-        Ein paar Zeilen zu deinem Business reichen – wir übernehmen den Rest und melden uns mit einer klaren Empfehlung.
-      </p>
-
-      <div class="final-cta">
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-          <strong>Adframe Studio Vienna</strong><br />
-          <span class="muted">Ads & Creatives zur Kundengewinnung (Österreich)</span>
+          <a href="#top" class="brand" style="margin-bottom: 18px; display: inline-flex;">
+            <div class="brand-mark">A</div>
+            <div class="brand-text">
+              <span class="brand-title">Adframe Studio Vienna</span>
+              <span class="brand-subtitle">AI Creative & Growth Studio</span>
+            </div>
+          </a>
+          <p style="max-width: 42ch;">
+            Premium AI ad creatives and AI performance websites for businesses that want more attention, more inquiries, and more growth with modern execution.
+          </p>
+          <small>© 2026 Adframe Studio Vienna. All rights reserved.</small>
         </div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a class="btn" href="mailto:adframe.studio.vienna@gmail.com">E-Mail</a>
-          <a class="btn primary" href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noreferrer">Instagram DM</a>
+
+        <div>
+          <h3 style="font-size: 1rem; margin-bottom: 14px; letter-spacing: -0.03em;">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#ai-strategy">AI Strategy</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1rem; margin-bottom: 14px; letter-spacing: -0.03em;">Social</h3>
+          <ul class="footer-socials">
+            <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href="mailto:hello@adframestudiovienna.com">hello@adframestudiovienna.com</a></li>
+          </ul>
         </div>
       </div>
-
-      <p class="small" style="margin-top:14px;">
-        Hinweis: Fokus ist Creative Output, saubere Kommunikation und testbare Ads.
-      </p>
     </div>
-  </section>
-
-  <footer>
-    © <span id="year"></span> Adframe Studio Vienna · Hinweis: Concept Examples möglich · Österreich
   </footer>
 
   <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    /* =========================================================
+       ADFRAME STUDIO VIENNA — INTERACTIONS
+       ---------------------------------------------------------
+       Lightweight, performant JavaScript:
+       - Sticky header state
+       - Mobile menu toggle
+       - Scroll reveal animations
+       - Background shift on scroll
+       - Subtle mouse parallax in hero / showcase
+       ========================================================= */
 
-    // Header shrink on scroll
-    const topbar = document.getElementById("topbar");
-    const onScroll = () => {
-      if (window.scrollY > 20) topbar.classList.add("shrink");
-      else topbar.classList.remove("shrink");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    // Cached DOM references
+    const header = document.querySelector(".site-header");
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+    const revealElements = document.querySelectorAll(".reveal");
+    const heroVisual = document.getElementById("heroVisual");
+    const parallaxItems = document.querySelectorAll("[data-parallax]");
+    const root = document.documentElement;
 
-    // Reveal on scroll (IntersectionObserver) + hero stagger support
-    const reveals = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          const stagger = e.target.classList.contains("hero-stagger")
-            ? e.target
-            : e.target.querySelector(".hero-stagger");
-          if (stagger) stagger.classList.add("in");
-        }
+    // Sticky header effect on scroll
+    function updateHeaderState() {
+      if (window.scrollY > 18) {
+        header.classList.add("is-scrolled");
+      } else {
+        header.classList.remove("is-scrolled");
+      }
+    }
+
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+    // Mobile navigation toggle
+    function toggleMobileMenu(forceState) {
+      const isOpen = forceState !== undefined
+        ? forceState
+        : mobileMenu.hasAttribute("hidden");
+
+      if (isOpen) {
+        mobileMenu.removeAttribute("hidden");
+        hamburger.classList.add("is-active");
+        hamburger.setAttribute("aria-expanded", "true");
+      } else {
+        mobileMenu.setAttribute("hidden", "");
+        hamburger.classList.remove("is-active");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener("click", () => {
+        const isCurrentlyHidden = mobileMenu.hasAttribute("hidden");
+        toggleMobileMenu(isCurrentlyHidden);
       });
-    }, { threshold: 0.12 });
 
-    reveals.forEach(el => io.observe(el));
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => toggleMobileMenu(false));
+      });
+    }
+
+    // Reveal animations using IntersectionObserver
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    // Background shift while scrolling for subtle cinematic motion
+    function updateBackgroundShift() {
+      const scrollY = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollY / docHeight : 0;
+
+      const scrollX = 50 + Math.sin(progress * Math.PI * 1.5) * 12;
+      const scrollYPos = 18 + progress * 55;
+
+      root.style.setProperty("--scrollX", `${scrollX}%`);
+      root.style.setProperty("--scrollY", `${scrollYPos}%`);
+    }
+
+    updateBackgroundShift();
+    window.addEventListener("scroll", updateBackgroundShift, { passive: true });
+
+    // Mouse-based depth effect
+    function handlePointerMove(event) {
+      const x = (event.clientX / window.innerWidth) * 100;
+      const y = (event.clientY / window.innerHeight) * 100;
+      root.style.setProperty("--mx", `${x}%`);
+      root.style.setProperty("--my", `${y}%`);
+
+      // Subtle parallax effect on hero visual
+      if (heroVisual) {
+        const rotateY = ((x - 50) / 50) * 5;
+        const rotateX = ((50 - y) / 50) * 5;
+        heroVisual.style.transform = `translate3d(0,0,0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
+
+      parallaxItems.forEach((item) => {
+        const intensity = Number(item.dataset.parallax || 0);
+        const moveX = ((x - 50) / 50) * intensity;
+        const moveY = ((y - 50) / 50) * intensity;
+        item.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    }
+
+    function resetPointerEffects() {
+      if (heroVisual) {
+        heroVisual.style.transform = "";
+      }
+
+      parallaxItems.forEach((item) => {
+        item.style.transform = "";
+      });
+    }
+
+    // Only run pointer effects on devices that likely have a fine pointer
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (canHover) {
+      window.addEventListener("pointermove", handlePointerMove, { passive: true });
+      window.addEventListener("pointerleave", resetPointerEffects, { passive: true });
+    }
+
+    // Close mobile menu if viewport changes to desktop width
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 940 && mobileMenu && !mobileMenu.hasAttribute("hidden")) {
+        toggleMobileMenu(false);
+      }
+    });
   </script>
 </body>
 </html>
