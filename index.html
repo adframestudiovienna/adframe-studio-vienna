@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta
@@ -9,11 +9,11 @@
   <title>Adframe Studio Vienna — AI Creatives & Performance Websites</title>
   <meta
     name="description"
-    content="Adframe Studio Vienna creates AI ad creatives and AI performance websites for businesses that want more attention, more inquiries, and more growth."
+    content="Adframe Studio Vienna erstellt AI Ad Creatives und AI Performance Websites für Businesses, die mehr Aufmerksamkeit, mehr Anfragen und mehr Wachstum wollen."
   />
   <meta name="theme-color" content="#0b0b0d" />
 
-  <!-- Premium webfont -->
+  <!-- Premium Webfont -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -25,8 +25,8 @@
     /* =========================================================
        ADFRAME STUDIO VIENNA — ONE PAGE WEBSITE
        ---------------------------------------------------------
-       All styles are contained in this file so it works directly
-       on GitHub Pages without any build tools.
+       Alles in einer Datei, damit die Website direkt auf
+       GitHub Pages ohne Build-Tools funktioniert.
        ========================================================= */
 
     :root {
@@ -77,7 +77,7 @@
       line-height: 1.55;
     }
 
-    /* Scrollbar styling for premium feel */
+    /* Hochwertige Scrollbar */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -416,13 +416,18 @@
 
     .hamburger {
       display: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), transparent 40%),
+        rgba(255,255,255,0.05);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 12px 28px rgba(0,0,0,0.18);
       cursor: pointer;
       position: relative;
       transition: var(--transition);
@@ -430,6 +435,7 @@
 
     .hamburger:hover {
       background: rgba(255,255,255,0.08);
+      border-color: rgba(201,166,107,0.35);
     }
 
     .hamburger span {
@@ -461,25 +467,50 @@
       transform: translateX(-50%) rotate(-45deg);
     }
 
+    /* Mobile menu ist standardmäßig IMMER versteckt */
     .mobile-menu {
       display: none;
       padding: 0 16px 18px;
     }
 
+    .mobile-menu[hidden] {
+      display: none !important;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+      animation: mobileMenuIn 0.26s ease forwards;
+    }
+
     .mobile-panel {
       border: 1px solid rgba(255,255,255,0.09);
-      background: rgba(12,12,16,0.88);
+      background:
+        linear-gradient(180deg, rgba(11,11,16,0.96), rgba(8,8,12,0.92));
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-radius: 24px;
+      border-radius: 30px;
       padding: 20px;
       box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mobile-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(201,166,107,0.12), transparent 28%),
+        linear-gradient(180deg, transparent 55%, rgba(255,255,255,0.02));
+      pointer-events: none;
     }
 
     .mobile-links,
     .mobile-actions {
       display: grid;
       gap: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .mobile-links {
@@ -488,12 +519,20 @@
 
     .mobile-links a,
     .mobile-actions a {
-      padding: 14px 16px;
-      border-radius: 16px;
+      padding: 16px 18px;
+      border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .mobile-actions a:last-child {
+      background: linear-gradient(180deg, #f1d7a7 0%, #c9a66b 100%);
+      color: #111;
+      border-color: rgba(241,215,167,0.4);
     }
 
     /* =========================
@@ -791,7 +830,7 @@
     }
 
     /* =========================
-       GENERIC CARDS
+       GENERISCHE KARTEN
        ========================= */
     .grid-2 {
       display: grid;
@@ -1696,6 +1735,17 @@
       }
     }
 
+    @keyframes mobileMenuIn {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* =========================
        RESPONSIVE
        ========================= */
@@ -1769,8 +1819,7 @@
         display: none;
       }
 
-      .hamburger,
-      .mobile-menu {
+      .hamburger {
         display: block;
       }
 
@@ -1835,6 +1884,20 @@
       .section-title,
       .cta-title {
         text-wrap: balance;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-title {
+        font-size: 0.9rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
       }
 
       .hero-meta {
@@ -1916,6 +1979,23 @@
       .hero-scroll-note {
         display: none;
       }
+
+      /* Premium Mobile Menu */
+      .mobile-menu {
+        padding: 8px 0 14px;
+      }
+
+      .mobile-panel {
+        padding: 14px;
+        border-radius: 24px;
+      }
+
+      .mobile-links a,
+      .mobile-actions a {
+        min-height: 58px;
+        font-size: 1rem;
+        border-radius: 18px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1939,7 +2019,7 @@
   </style>
 </head>
 <body>
-  <!-- Subtle background layers for cinematic depth -->
+  <!-- Subtile Background-Layer für mehr Tiefe -->
   <div class="page-bg-shift" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
   <div class="grid-overlay" aria-hidden="true"></div>
@@ -1949,9 +2029,9 @@
        ========================================================= -->
   <header class="site-header" id="top">
     <div class="container">
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#top" class="brand" aria-label="Adframe Studio Vienna home">
-          <!-- Placeholder logo that can easily be replaced later -->
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#top" class="brand" aria-label="Adframe Studio Vienna Startseite">
+          <!-- Platzhalter-Logo -->
           <div class="brand-mark">A</div>
           <div class="brand-text">
             <span class="brand-title">Adframe Studio Vienna</span>
@@ -1963,18 +2043,17 @@
           <div class="nav-links">
             <a href="#services">Services</a>
             <a href="#ai-strategy">AI Strategy</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
+            <a href="#process">Prozess</a>
+            <a href="#contact">Kontakt</a>
           </div>
 
           <div class="nav-actions">
-            <!-- Replace placeholder links with real profiles -->
-            <a class="btn btn-ghost" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a class="btn btn-ghost" href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            <a class="btn btn-primary" href="#contact">Let’s Talk</a>
+            <a class="btn btn-ghost" href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a class="btn btn-ghost" href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn btn-primary" href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">Let’s Talk</a>
           </div>
 
-          <button class="hamburger" id="hamburger" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <button class="hamburger" id="hamburger" aria-label="Mobiles Menü öffnen" aria-expanded="false" aria-controls="mobile-menu" type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -1982,18 +2061,19 @@
         </div>
       </nav>
 
+      <!-- hidden sorgt dafür, dass das Menü initial sicher geschlossen bleibt -->
       <div class="mobile-menu" id="mobile-menu" hidden>
         <div class="mobile-panel">
           <div class="mobile-links">
             <a href="#services">Services</a>
             <a href="#ai-strategy">AI Strategy</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
+            <a href="#process">Prozess</a>
+            <a href="#contact">Kontakt</a>
           </div>
           <div class="mobile-actions">
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            <a href="#contact">Let’s Talk</a>
+            <a href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">Let’s Talk</a>
           </div>
         </div>
       </div>
@@ -2009,32 +2089,32 @@
         <div class="hero-layout">
           <div class="hero-copy">
             <div class="hero-kicker hero-animate">
-              <span class="pill">Premium creative systems for modern businesses</span>
+              <span class="pill">Premium Creative-Systeme für moderne Businesses</span>
             </div>
 
             <h1 class="hero-title hero-animate delay-1">
               AI Creatives &
               <span class="line-soft">Performance Websites</span>
-              for Businesses That Want to Grow
+              für Businesses, die wachsen wollen
             </h1>
 
             <p class="hero-description hero-animate delay-2">
-              Adframe Studio Vienna builds AI-powered ad creatives and conversion-focused websites for brands that need more attention, more inquiries, and a stronger digital presence that actually moves growth forward.
+              Adframe Studio Vienna entwickelt AI-gestützte Ad Creatives und conversion-fokussierte Websites für Marken, die mehr Aufmerksamkeit, mehr Anfragen und eine stärkere digitale Präsenz brauchen, die Wachstum wirklich unterstützt.
             </p>
 
             <div class="hero-actions hero-animate delay-3">
-              <a href="#contact" class="btn btn-primary">Book a Call</a>
-              <a href="#services" class="btn btn-secondary">View Services</a>
+              <a href="mailto:adframe.studio.vienna@gmail.com" class="btn btn-primary">Book a Call</a>
+              <a href="#services" class="btn btn-secondary">Services ansehen</a>
             </div>
 
             <div class="hero-meta hero-animate delay-4">
               <div class="hero-stat">
                 <strong>AI Ad Creatives</strong>
-                <span>Fast iteration, stronger hooks, sharper visual testing.</span>
+                <span>Schnellere Iteration, stärkere Hooks, präziseres visuelles Testing.</span>
               </div>
               <div class="hero-stat">
                 <strong>Performance Websites</strong>
-                <span>Built to guide attention, reduce friction, and convert.</span>
+                <span>Gebaut, um Aufmerksamkeit zu führen, Reibung zu senken und zu konvertieren.</span>
               </div>
             </div>
           </div>
@@ -2043,7 +2123,7 @@
             <div class="hero-orb"></div>
             <div class="hero-glow-ring"></div>
 
-            <!-- Layered glass cards create depth without heavy 3D -->
+            <!-- Layered Glass Cards für Premium-Tiefe -->
             <div class="hero-stack">
               <div class="glass-card visual-card-main">
                 <div class="card-ui">
@@ -2051,9 +2131,9 @@
                     <div class="ui-dots"><span></span><span></span><span></span></div>
                     <div class="ui-chip">Adframe System</div>
                   </div>
-                  <div class="ui-title">Creative velocity with premium execution.</div>
+                  <div class="ui-title">Creative Velocity mit hochwertiger Ausführung.</div>
                   <div class="ui-copy">
-                    Strategy, messaging, visual direction, testing logic, and AI-assisted production combined into one sharp growth asset stack.
+                    Strategie, Messaging, visuelle Richtung, Testing-Logik und AI-unterstützte Produktion vereint in einem fokussierten Asset-System für Wachstum.
                   </div>
                   <div class="ui-grid">
                     <div class="ui-box"></div>
@@ -2093,7 +2173,7 @@
           </div>
         </div>
 
-        <div class="hero-scroll-note">Scroll to explore</div>
+        <div class="hero-scroll-note">Scrollen, um mehr zu sehen</div>
       </div>
     </section>
 
@@ -2104,44 +2184,44 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">The Real Problem</div>
+            <div class="eyebrow">Das eigentliche Problem</div>
             <h2 class="section-title wide">
-              Most businesses do not lack potential. <span class="accent">They lack assets that perform.</span>
+              Den meisten Businesses fehlt nicht Potenzial. <span class="accent">Ihnen fehlen Assets, die performen.</span>
             </h2>
           </div>
           <p class="section-copy">
-            Growth rarely stalls because the product is weak. It usually stalls because the message is forgettable, the creatives do not stop attention, and the website does not guide visitors toward action with enough clarity, trust, and speed.
+            Wachstum stagniert selten wegen eines schlechten Produkts. Meist stagniert es, weil die Botschaft austauschbar ist, die Creatives keine Aufmerksamkeit stoppen und die Website Besucher nicht klar, vertrauensvoll und schnell genug zur Handlung führt.
           </p>
         </div>
 
         <div class="problem-panel">
           <div class="problem-copy-card reveal">
-            <div class="card-tag">Where momentum gets lost</div>
-            <h3>Your business can be solid and still feel invisible online.</h3>
+            <div class="card-tag">Wo Momentum verloren geht</div>
+            <h3>Ein Business kann stark sein und online trotzdem unsichtbar wirken.</h3>
             <p class="muted">
-              Many brands invest in ads, design, or websites independently, but still end up with fragmented execution. The result looks acceptable on the surface, yet fails to create enough belief, clarity, and conversion when it matters.
+              Viele Marken investieren getrennt in Ads, Design oder Websites und landen trotzdem bei einer fragmentierten Umsetzung. Das Ergebnis sieht oberflächlich akzeptabel aus, erzeugt aber nicht genug Vertrauen, Klarheit oder Conversion, wenn es wirklich zählt.
             </p>
 
             <ul class="problem-list">
-              <li>Ads may look polished, but they do not create enough curiosity, trust, or urgency to perform consistently.</li>
-              <li>Websites may appear modern, yet they fail to structure the offer in a way that drives real inquiries.</li>
-              <li>Messaging becomes too generic, making the business blend in with every competitor in the market.</li>
-              <li>Testing is too slow, so weak creatives stay live too long and strong angles are discovered too late.</li>
-              <li>The digital presence feels outdated, which lowers perceived quality before a conversation even begins.</li>
+              <li>Ads können optisch gut aussehen, erzeugen aber nicht genug Neugier, Vertrauen oder Dringlichkeit, um konstant zu performen.</li>
+              <li>Websites wirken modern, strukturieren das Angebot aber nicht so, dass echte Anfragen entstehen.</li>
+              <li>Messaging ist zu generisch und lässt das Business wie jeden anderen Anbieter wirken.</li>
+              <li>Testing läuft zu langsam, dadurch bleiben schwache Creatives zu lange live und starke Angles werden zu spät erkannt.</li>
+              <li>Die digitale Präsenz fühlt sich veraltet an und senkt die wahrgenommene Qualität schon vor dem ersten Gespräch.</li>
             </ul>
           </div>
 
           <div class="problem-side">
             <div class="card metric-card reveal delay-1">
-              <div class="card-tag">Creative friction</div>
-              <div class="metric-value">Weak creative kills attention first.</div>
-              <p>Without strong hooks and clear angles, campaigns never get enough momentum to compound.</p>
+              <div class="card-tag">Creative-Reibung</div>
+              <div class="metric-value">Schwache Creatives zerstören Aufmerksamkeit zuerst.</div>
+              <p>Ohne starke Hooks und klare Angles bekommen Kampagnen nie genug Momentum, um sich nachhaltig aufzubauen.</p>
             </div>
 
             <div class="card metric-card reveal delay-2">
-              <div class="card-tag">Website friction</div>
-              <div class="metric-value">Beautiful is not enough.</div>
-              <p>A website must lead, frame value, remove doubt, and create action — not just look good in screenshots.</p>
+              <div class="card-tag">Website-Reibung</div>
+              <div class="metric-value">Schön allein reicht nicht.</div>
+              <p>Eine Website muss führen, Wert vermitteln, Zweifel reduzieren und Handlung auslösen — nicht nur gut in Screenshots aussehen.</p>
             </div>
           </div>
         </div>
@@ -2155,51 +2235,51 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">Why Growth Breaks</div>
+            <div class="eyebrow">Warum Wachstum bricht</div>
             <h2 class="section-title wide">
-              The biggest growth problems are usually <span class="accent">structural, not random.</span>
+              Die größten Wachstumsprobleme sind meist <span class="accent">strukturell, nicht zufällig.</span>
             </h2>
           </div>
           <p class="section-copy">
-            When creative quality, testing speed, and website conversion logic are disconnected, performance becomes inconsistent. These are the failure points that quietly reduce results.
+            Wenn Creative-Qualität, Testing-Geschwindigkeit und Website-Conversion-Logik voneinander getrennt sind, wird Performance inkonsistent. Genau dort entstehen die Schwachstellen, die Ergebnisse leise, aber spürbar reduzieren.
           </p>
         </div>
 
         <div class="grid-3">
           <article class="card reason-card reveal">
             <span class="reason-number">01</span>
-            <h3>Weak creative direction</h3>
-            <p>Businesses often publish assets that are visually fine but strategically thin, with no compelling hook or memorable angle.</p>
+            <h3>Schwache Creative Direction</h3>
+            <p>Businesses veröffentlichen oft Assets, die visuell okay sind, strategisch aber zu dünn bleiben — ohne starken Hook oder merkbaren Angle.</p>
           </article>
 
           <article class="card reason-card reveal delay-1">
             <span class="reason-number">02</span>
-            <h3>No testing culture</h3>
-            <p>Without rapid iterations, brands are forced to guess what works instead of systematically learning from stronger variations.</p>
+            <h3>Keine Testing-Kultur</h3>
+            <p>Ohne schnelle Iterationen müssen Marken raten, was funktioniert, statt aus starken Varianten systematisch zu lernen.</p>
           </article>
 
           <article class="card reason-card reveal delay-2">
             <span class="reason-number">03</span>
-            <h3>Poor website conversion flow</h3>
-            <p>Traffic arrives, but the structure does not reduce friction, build trust, or guide users toward a clear next step.</p>
+            <h3>Schwacher Website-Flow</h3>
+            <p>Traffic kommt an, aber die Struktur baut kein Vertrauen auf, reduziert keine Reibung und führt nicht klar genug zur nächsten Handlung.</p>
           </article>
 
           <article class="card reason-card reveal">
             <span class="reason-number">04</span>
-            <h3>Unclear offer presentation</h3>
-            <p>If the value proposition is vague, the market does not understand why this business deserves attention now.</p>
+            <h3>Unklares Offer-Framing</h3>
+            <p>Wenn das Wertversprechen zu vage ist, versteht der Markt nicht, warum genau dieses Business jetzt Aufmerksamkeit verdient.</p>
           </article>
 
           <article class="card reason-card reveal delay-1">
             <span class="reason-number">05</span>
-            <h3>Slow production cycles</h3>
-            <p>By the time the next creative is ready, the market has already moved and performance opportunities are lost.</p>
+            <h3>Langsame Produktionszyklen</h3>
+            <p>Bis das nächste Creative fertig ist, hat sich der Markt oft schon bewegt und Chancen auf Performance gehen verloren.</p>
           </article>
 
           <article class="card reason-card reveal delay-2">
             <span class="reason-number">06</span>
-            <h3>No AI leverage</h3>
-            <p>Ignoring AI means slower adaptation, fewer tested angles, and less speed where modern growth now demands it.</p>
+            <h3>Kein AI-Leverage</h3>
+            <p>Wer AI ignoriert, reagiert langsamer, testet weniger Angles und verliert genau dort Geschwindigkeit, wo modernes Wachstum sie verlangt.</p>
           </article>
         </div>
       </div>
@@ -2212,46 +2292,46 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">The Solution</div>
+            <div class="eyebrow">Die Lösung</div>
             <h2 class="section-title wide">
-              Adframe Studio Vienna creates <span class="accent">the assets your growth depends on.</span>
+              Adframe Studio Vienna entwickelt <span class="accent">die Assets, von denen Wachstum abhängt.</span>
             </h2>
           </div>
           <p class="section-copy">
-            We combine AI-assisted speed with human-led strategy, messaging, and premium visual execution — so your business does not just look more modern, it performs with more intention.
+            Wir verbinden AI-gestützte Geschwindigkeit mit menschlich geführter Strategie, Messaging und hochwertiger visueller Umsetzung — damit dein Business nicht nur moderner aussieht, sondern gezielter performt.
           </p>
         </div>
 
         <div class="grid-2 solution-grid">
           <article class="card solution-card reveal">
             <div class="card-tag">AI Ad Creatives</div>
-            <h3>Stronger hooks, faster iterations, better testing logic.</h3>
+            <h3>Stärkere Hooks, schnellere Iterationen, bessere Testing-Logik.</h3>
             <p>
-              We create ad assets built for performance environments — not generic visuals. That means sharper angles, variation-ready concepts, and assets designed to help brands learn faster and scale what resonates.
+              Wir erstellen Ad Assets für echte Performance-Umfelder — keine generischen Visuals. Das bedeutet stärkere Angles, Varianten mit Testing-Potenzial und Creatives, die Businesses helfen, schneller zu lernen und gezielter zu skalieren.
             </p>
           </article>
 
           <article class="card solution-card reveal delay-1">
             <div class="card-tag">AI Performance Websites</div>
-            <h3>Clearer positioning, higher trust, and stronger conversion flow.</h3>
+            <h3>Klarere Positionierung, mehr Vertrauen und stärkerer Conversion-Flow.</h3>
             <p>
-              We design websites and landing pages that do more than look premium. They frame the offer, direct attention, reduce doubt, and make taking action feel obvious.
+              Wir gestalten Websites und Landingpages, die mehr tun als gut aussehen. Sie rahmen das Angebot, lenken Aufmerksamkeit, reduzieren Zweifel und machen den nächsten Schritt offensichtlich.
             </p>
           </article>
 
           <article class="card solution-card reveal">
             <div class="card-tag">Premium Execution</div>
-            <h3>Visual quality that elevates how your business is perceived.</h3>
+            <h3>Visuelle Qualität, die die Wahrnehmung deines Businesses hebt.</h3>
             <p>
-              Growth is easier when the market instantly feels credibility. We focus on modern visual structure, sophisticated typography, and high-end digital presentation.
+              Wachstum wird leichter, wenn der Markt sofort Glaubwürdigkeit spürt. Deshalb fokussieren wir uns auf moderne Struktur, starke Typografie und eine digitale Präsenz mit Premium-Gefühl.
             </p>
           </article>
 
           <article class="card solution-card reveal delay-1">
             <div class="card-tag">Modern Delivery</div>
-            <h3>Fast enough for today’s pace, precise enough for premium brands.</h3>
+            <h3>Schnell genug für heutige Geschwindigkeit, präzise genug für Premium-Marken.</h3>
             <p>
-              AI gives us speed. Strategy keeps that speed useful. The result is a more responsive creative system without sacrificing judgment, coherence, or quality.
+              AI gibt uns Tempo. Strategie macht dieses Tempo sinnvoll. So entsteht ein reaktionsstärkeres Creative-System ohne Verlust an Urteilskraft, Qualität oder Klarheit.
             </p>
           </article>
         </div>
@@ -2265,34 +2345,33 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">Our AI Strategy</div>
+            <div class="eyebrow">Unsere AI Strategy</div>
             <h2 class="section-title wide">
-              AI is our edge. <span class="accent">Quality remains human-led.</span>
+              AI ist unser Vorteil. <span class="accent">Qualität bleibt menschlich geführt.</span>
             </h2>
           </div>
           <p class="section-copy">
-            We do not use AI as a cheap shortcut. We use it to unlock speed, iteration, testing depth, and creative precision — while keeping strategic decisions, visual standards, and conversion logic under expert control.
+            Wir nutzen AI nicht als billige Abkürzung. Wir nutzen sie für Geschwindigkeit, Iterationstiefe, Testing-Potenzial und kreative Präzision — während strategische Entscheidungen, visuelle Standards und Conversion-Logik unter Expertenkontrolle bleiben.
           </p>
         </div>
 
         <div class="strategy-layout">
           <div class="strategy-panel reveal">
             <div class="strategy-copy">
-              <div class="card-tag">Why our process feels different</div>
-              <h3>AI supports execution. It does not replace judgment.</h3>
+              <div class="card-tag">Warum sich unser Prozess anders anfühlt</div>
+              <h3>AI unterstützt die Ausführung. Sie ersetzt kein Urteilsvermögen.</h3>
               <p class="muted">
-                The real advantage is not just producing more assets. It is producing smarter variations, faster learning loops, and more refined output around a clear strategic direction.
+                Der echte Vorteil liegt nicht nur darin, mehr Assets zu produzieren. Sondern darin, bessere Varianten schneller zu entwickeln, Lernschleifen zu beschleunigen und alles um eine klare strategische Richtung herum zu verfeinern.
               </p>
 
               <ul class="strategy-points">
-                <li>Strategy defines the message, market angle, and creative priorities first.</li>
-                <li>AI accelerates ideation, variation building, and production speed.</li>
-                <li>Human review shapes tone, visual quality, and brand perception.</li>
-                <li>Testing logic informs what deserves more attention and refinement.</li>
-                <li>Conversion thinking connects every creative asset back to business outcomes.</li>
+                <li>Strategie definiert zuerst Botschaft, Markt-Angle und kreative Prioritäten.</li>
+                <li>AI beschleunigt Ideation, Variantenbildung und Produktionsgeschwindigkeit.</li>
+                <li>Menschliche Kontrolle formt Tonalität, visuelle Qualität und Markenwahrnehmung.</li>
+                <li>Testing-Logik entscheidet, was mehr Aufmerksamkeit und Verfeinerung verdient.</li>
+                <li>Conversion Thinking verbindet jedes Asset direkt mit echten Business-Zielen.</li>
               </ul>
 
-              <!-- Visual placeholder system that can later be replaced -->
               <div class="strategy-visual" aria-hidden="true">
                 <div class="strategy-layer one"></div>
                 <div class="strategy-layer two"></div>
@@ -2305,32 +2384,32 @@
             <div class="strategy-steps">
               <article class="strategy-step">
                 <span class="step-number">Step 01</span>
-                <h4>Strategic framing</h4>
-                <p class="muted">We clarify the offer, the audience, the conversion goal, and the key message the market needs to understand immediately.</p>
+                <h4>Strategische Grundlage</h4>
+                <p class="muted">Wir definieren Offer, Zielgruppe, Positionierung und das Conversion-Ziel, das wirklich zählt.</p>
               </article>
 
               <article class="strategy-step">
                 <span class="step-number">Step 02</span>
-                <h4>Message + angle development</h4>
-                <p class="muted">Hooks, pain points, benefits, objections, and offer angles are structured into creative-ready directions with testing potential.</p>
+                <h4>Messaging & Angles</h4>
+                <p class="muted">Hooks, Pain Points, Benefits, Einwände und Offer-Angles werden zu klaren kreativen Richtungen mit Testing-Potenzial strukturiert.</p>
               </article>
 
               <article class="strategy-step">
                 <span class="step-number">Step 03</span>
-                <h4>AI-assisted creative production</h4>
-                <p class="muted">We produce variations faster, expand concepts intelligently, and build multiple formats without losing cohesion or standard.</p>
+                <h4>AI-gestützte Produktion</h4>
+                <p class="muted">Wir bauen schneller Varianten, erweitern Konzepte intelligent und erstellen mehrere Formate, ohne Kohärenz oder Standard zu verlieren.</p>
               </article>
 
               <article class="strategy-step">
                 <span class="step-number">Step 04</span>
-                <h4>Human quality control</h4>
-                <p class="muted">Every asset is filtered through design judgment, conversion logic, and brand-level refinement before delivery.</p>
+                <h4>Menschliche Qualitätskontrolle</h4>
+                <p class="muted">Jedes Asset wird vor der Auslieferung durch Design-Urteil, Conversion-Logik und Premium-Anspruch gefiltert.</p>
               </article>
 
               <article class="strategy-step">
                 <span class="step-number">Step 05</span>
-                <h4>Iterate with intent</h4>
-                <p class="muted">The goal is not more content for the sake of it. The goal is faster learning, sharper decision-making, and better growth assets over time.</p>
+                <h4>Iterieren mit Absicht</h4>
+                <p class="muted">Es geht nicht um mehr Content um jeden Preis. Es geht um schnelleres Lernen, bessere Entscheidungen und stärkere Growth-Assets über Zeit.</p>
               </article>
             </div>
           </div>
@@ -2347,85 +2426,85 @@
           <div>
             <div class="eyebrow">Services</div>
             <h2 class="section-title wide">
-              AI creative packages built for <span class="accent">attention, testing, and scale.</span>
+              AI Creative Pakete für <span class="accent">Aufmerksamkeit, Testing und Skalierung.</span>
             </h2>
           </div>
           <p class="section-copy">
-            Our ad creative packages are designed for businesses that need better assets, stronger variation systems, and faster execution without compromising on perception or clarity.
+            Unsere Creative-Pakete sind für Businesses gedacht, die bessere Assets, stärkere Varianten-Systeme und schnellere Umsetzung brauchen — ohne Kompromisse bei Wahrnehmung oder Qualität.
           </p>
         </div>
 
         <div class="pricing-grid">
           <article class="pricing-card reveal">
             <div class="pricing-name">AI Ad Creative — Starter</div>
-            <div class="pricing-label">For brands that need a sharper creative foundation.</div>
+            <div class="pricing-label">Für Marken, die eine stärkere Creative-Basis brauchen.</div>
 
             <div class="price">
               <strong>€790</strong>
-              <span>per package</span>
+              <span>pro Paket</span>
             </div>
 
             <ul class="pricing-list">
               <li>6 Ad Creatives</li>
               <li>3 Video Ads</li>
               <li>3 Image Ads</li>
-              <li>3 Hook Variations</li>
-              <li>Meta & Instagram Formats</li>
-              <li>Delivery in 5–7 Days</li>
+              <li>3 Hook Variationen</li>
+              <li>Meta & Instagram Formate</li>
+              <li>Lieferung in 5–7 Tagen</li>
             </ul>
 
             <div class="pricing-footer">
-              <span class="soft">Fast entry into better testing</span>
-              <a href="#contact" class="btn btn-secondary">Choose Starter</a>
+              <span class="soft">Schneller Einstieg in besseres Testing</span>
+              <a href="#contact" class="btn btn-secondary">Starter wählen</a>
             </div>
           </article>
 
           <article class="pricing-card popular reveal delay-1">
             <div class="popular-badge">Most Popular</div>
             <div class="pricing-name">AI Ad Creative — Growth</div>
-            <div class="pricing-label">For businesses that want more range and stronger testing coverage.</div>
+            <div class="pricing-label">Für Businesses, die mehr Bandbreite und stärkere Testing-Abdeckung wollen.</div>
 
             <div class="price">
               <strong>€1.490</strong>
-              <span>per package</span>
+              <span>pro Paket</span>
             </div>
 
             <ul class="pricing-list">
               <li>12 Ad Creatives</li>
               <li>Video + Image Ads</li>
-              <li>Multiple Hooks & Angles</li>
-              <li>Reels / Feed / Stories Formats</li>
-              <li>Creative Testing Variants</li>
-              <li>Delivery in 5 Days</li>
+              <li>Mehrere Hooks & Angles</li>
+              <li>Reels / Feed / Stories Formate</li>
+              <li>Creative Testing Varianten</li>
+              <li>Lieferung in 5 Tagen</li>
             </ul>
 
             <div class="pricing-footer">
-              <span class="soft">Best balance of depth and speed</span>
-              <a href="#contact" class="btn btn-primary">Choose Growth</a>
+              <span class="soft">Beste Balance aus Tiefe und Geschwindigkeit</span>
+              <a href="#contact" class="btn btn-primary">Growth wählen</a>
             </div>
           </article>
 
           <article class="pricing-card reveal delay-2">
             <div class="pricing-name">AI Ad Creative — Scale</div>
-            <div class="pricing-label">For brands that need velocity, volume, and fast creative expansion.</div>
+            <div class="pricing-label">Für Marken, die Tempo, Volumen und kreative Expansion brauchen.</div>
 
             <div class="price">
               <strong>€2.990</strong>
-              <span>per package</span>
+              <span>pro Paket</span>
             </div>
 
             <ul class="pricing-list">
               <li>25 Ad Creatives</li>
               <li>Video + Image Ads</li>
-              <li>Multiple Hook Variants</li>
-              <li>Problem / Solution / Offer Angles</li>
-              <li>Meta & TikTok Formats</li>
-              <li>Priority Delivery in 3–4 Days</li>
+              <li>Mehrere Hook Varianten</li>
+              <li>Problem / Lösung / Offer Angles</li>
+              <li>Meta & TikTok Formate</li>
+              <li>Priority Delivery in 3–4 Tagen</li>
             </ul>
 
             <div class="pricing-footer">
-              <span class="soft">Built for aggressive testing cycles</span>
-              <a href="#contact" class="btn btn-secondary">Choose Scale</a>
+              <span class="soft">Gebaut für aggressive Testing-Zyklen</span>
+              <a href="#contact" class="btn btn-secondary">Scale wählen</a>
             </div>
           </article>
         </div>
@@ -2441,31 +2520,31 @@
           <div class="website-service-inner">
             <div class="website-copy">
               <div class="eyebrow">AI Performance Website</div>
-              <h3>Websites should not just look modern. They should lead, convince, and convert.</h3>
+              <h3>Websites sollten nicht nur modern aussehen. Sie sollten führen, überzeugen und konvertieren.</h3>
               <p class="muted">
-                Adframe Studio Vienna creates AI Performance Websites that combine strong visual presence with clear conversion structure. Every section is designed to reduce hesitation, sharpen the offer, and move visitors toward inquiry or booking.
+                Adframe Studio Vienna erstellt AI Performance Websites, die starke visuelle Präsenz mit klarer Conversion-Struktur verbinden. Jede Section ist darauf ausgelegt, Reibung zu reduzieren, das Angebot zu schärfen und Besucher gezielt zur Anfrage oder Buchung zu führen.
               </p>
 
               <div class="price-line">
-                Starting from <strong>€2.490</strong>
+                Ab <strong>€2.490</strong>
               </div>
 
               <ul class="benefit-list">
-                <li>Modern AI-optimized landing page structure</li>
-                <li>Conversion-focused hierarchy and messaging flow</li>
-                <li>Mobile optimization across key breakpoints</li>
-                <li>Fast-loading, clean, and scalable front-end execution</li>
-                <li>Clear CTA placement throughout the experience</li>
-                <li>Lead form or booking integration included</li>
+                <li>Moderne AI-optimierte Landingpage-Struktur</li>
+                <li>Conversion-fokussierte Hierarchie und Messaging-Flow</li>
+                <li>Mobile Optimierung für alle relevanten Breakpoints</li>
+                <li>Schnelle, saubere und skalierbare Frontend-Umsetzung</li>
+                <li>Klare CTA-Platzierung über die gesamte Seite hinweg</li>
+                <li>Lead-Formular oder Booking-Integration inklusive</li>
               </ul>
 
               <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary">Request Website Project</a>
-                <a href="#showcase" class="btn btn-secondary">View Visual Section</a>
+                <a href="#contact" class="btn btn-primary">Website-Projekt anfragen</a>
+                <a href="#showcase" class="btn btn-secondary">Visual Section ansehen</a>
               </div>
             </div>
 
-            <!-- Mockup-style placeholder screens for future replacement -->
+            <!-- Mockup-Platzhalter -->
             <div class="website-visual" aria-hidden="true">
               <div class="screen screen-left">
                 <div class="screen-content">
@@ -2482,7 +2561,7 @@
               <div class="screen screen-main">
                 <div class="screen-content">
                   <div class="screen-header"><span></span><span></span><span></span></div>
-                  <div class="screen-hero">AI Performance Landing Page</div>
+                  <div class="screen-hero">AI Performance Landingpage</div>
                   <div class="screen-lines">
                     <span style="width: 96%;"></span>
                     <span style="width: 88%;"></span>
@@ -2518,16 +2597,16 @@
           <div>
             <div class="eyebrow">Visual Showcase</div>
             <h2 class="section-title wide">
-              Built with depth, clarity, and a <span class="accent">premium visual language.</span>
+              Gebaut mit Tiefe, Klarheit und einer <span class="accent">hochwertigen visuellen Sprache.</span>
             </h2>
           </div>
           <p class="section-copy">
-            These are intentional placeholders designed for easy replacement later. The layered structure creates a high-end presentation now, while keeping the system flexible for future case studies, campaign previews, or website screens.
+            Diese Platzhalter sind bewusst so aufgebaut, dass du sie später leicht austauschen kannst. Die Layer-Struktur liefert jetzt schon einen High-End-Look und bleibt flexibel für künftige Case Studies, Kampagnen-Previews oder Website-Screens.
           </p>
         </div>
 
         <div class="showcase-wrap reveal">
-          <div class="showcase-grid" aria-label="Visual placeholder showcase">
+          <div class="showcase-grid" aria-label="Visueller Platzhalter-Showcase">
             <article class="showcase-card large-1" data-parallax="12">
               <div class="showcase-content">
                 <div class="placeholder-art">Project Visual 01</div>
@@ -2579,13 +2658,13 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">Process</div>
+            <div class="eyebrow">Prozess</div>
             <h2 class="section-title wide">
-              A clean process built for <span class="accent">speed, clarity, and execution quality.</span>
+              Ein klarer Ablauf für <span class="accent">Tempo, Struktur und Ausführungsqualität.</span>
             </h2>
           </div>
           <p class="section-copy">
-            Our workflow is designed to keep momentum high while ensuring the strategic foundation is clear before production starts.
+            Unser Workflow ist so aufgebaut, dass Momentum hoch bleibt, während die strategische Grundlage sauber steht, bevor die Produktion startet.
           </p>
         </div>
 
@@ -2593,31 +2672,31 @@
           <article class="timeline-step reveal">
             <span class="step-number">01</span>
             <h3>Discovery</h3>
-            <p class="muted">We identify the offer, audience, positioning, pain points, and the conversion goal that matters most.</p>
+            <p class="muted">Wir analysieren Angebot, Zielgruppe, Positionierung, Pain Points und das wichtigste Conversion-Ziel.</p>
           </article>
 
           <article class="timeline-step reveal delay-1">
             <span class="step-number">02</span>
-            <h3>Strategy</h3>
-            <p class="muted">We define the message hierarchy, creative angles, and content structure required for stronger market clarity.</p>
+            <h3>Strategie</h3>
+            <p class="muted">Wir definieren Message-Hierarchie, Creative Angles und die Content-Struktur, die für mehr Marktklarheit nötig ist.</p>
           </article>
 
           <article class="timeline-step reveal delay-2">
             <span class="step-number">03</span>
             <h3>Creative Direction</h3>
-            <p class="muted">We shape the visual system, hooks, offers, references, and stylistic decisions that frame the work.</p>
+            <p class="muted">Wir formen das visuelle System, Hooks, Offers, Referenzen und stilistische Entscheidungen, die das Projekt tragen.</p>
           </article>
 
           <article class="timeline-step reveal delay-3">
             <span class="step-number">04</span>
             <h3>Production</h3>
-            <p class="muted">Assets are built with AI-supported speed and human-led refinement for a premium final result.</p>
+            <p class="muted">Assets werden mit AI-unterstützter Geschwindigkeit und menschlich geführter Veredelung umgesetzt.</p>
           </article>
 
           <article class="timeline-step reveal delay-4">
             <span class="step-number">05</span>
             <h3>Launch / Delivery</h3>
-            <p class="muted">You receive ready-to-use assets designed to improve presence, testing capacity, and conversion performance.</p>
+            <p class="muted">Du erhältst einsatzbereite Assets, die Wahrnehmung, Testing-Kapazität und Conversion-Potenzial verbessern.</p>
           </article>
         </div>
       </div>
@@ -2630,51 +2709,51 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">Why Adframe Studio Vienna</div>
+            <div class="eyebrow">Warum Adframe Studio Vienna</div>
             <h2 class="section-title wide">
-              Not a generic agency. <span class="accent">A focused growth asset studio.</span>
+              Keine generische Agentur. <span class="accent">Ein fokussiertes Growth Asset Studio.</span>
             </h2>
           </div>
           <p class="section-copy">
-            We are built around a narrow and valuable idea: businesses grow faster when their creative assets and their website work together under one modern, performance-aware system.
+            Wir sind um eine klare Idee herum gebaut: Businesses wachsen schneller, wenn ihre kreativen Assets und ihre Website gemeinsam in einem modernen, performance-orientierten System funktionieren.
           </p>
         </div>
 
         <div class="why-grid">
           <article class="card why-item reveal">
-            <div class="card-tag">Specialized</div>
-            <h3>Focused instead of generic</h3>
-            <p>We do not try to be everything. We focus on AI creatives and AI performance websites because those assets directly influence growth.</p>
+            <div class="card-tag">Spezialisiert</div>
+            <h3>Fokussiert statt generisch</h3>
+            <p>Wir versuchen nicht, alles zu sein. Wir konzentrieren uns auf AI Creatives und AI Performance Websites, weil genau diese Assets Wachstum direkt beeinflussen.</p>
           </article>
 
           <article class="card why-item reveal delay-1">
             <div class="card-tag">Performance-first</div>
-            <h3>Built for business outcomes</h3>
-            <p>Every decision is informed by messaging strength, conversion logic, visual trust, and how the asset performs in real customer journeys.</p>
+            <h3>Gebaut für Business-Ergebnisse</h3>
+            <p>Jede Entscheidung orientiert sich an Messaging-Stärke, Conversion-Logik, visueller Vertrauensbildung und realen Customer Journeys.</p>
           </article>
 
           <article class="card why-item reveal delay-2">
             <div class="card-tag">AI-powered</div>
-            <h3>Faster without becoming careless</h3>
-            <p>We use AI to improve velocity and variation depth, not to lower standards or flood your brand with disposable output.</p>
+            <h3>Schneller ohne oberflächlich zu werden</h3>
+            <p>Wir nutzen AI, um Geschwindigkeit und Variationstiefe zu erhöhen — nicht, um Standards zu senken oder Marken mit belanglosem Output zu fluten.</p>
           </article>
 
           <article class="card why-item reveal">
-            <div class="card-tag">Premium execution</div>
-            <h3>High-end look and feel</h3>
-            <p>Perception matters. We create assets that feel modern, elevated, and aligned with businesses that want stronger authority online.</p>
+            <div class="card-tag">Premium Execution</div>
+            <h3>High-End Look & Feel</h3>
+            <p>Wahrnehmung zählt. Wir entwickeln Assets, die modern, hochwertig und passend für Businesses mit Ambition wirken.</p>
           </article>
 
           <article class="card why-item reveal delay-1">
-            <div class="card-tag">Fast delivery</div>
-            <h3>Speed that supports momentum</h3>
-            <p>Strong ideas lose power when execution drags. Our process is structured to move decisively while staying controlled and polished.</p>
+            <div class="card-tag">Fast Delivery</div>
+            <h3>Geschwindigkeit, die Momentum trägt</h3>
+            <p>Starke Ideen verlieren Kraft, wenn die Umsetzung zu lange dauert. Unser Prozess ist darauf ausgelegt, schnell und gleichzeitig kontrolliert zu liefern.</p>
           </article>
 
           <article class="card why-item reveal delay-2">
-            <div class="card-tag">Clear communication</div>
-            <h3>Simple, direct, reliable</h3>
-            <p>We keep the process organized, transparent, and business-oriented so the work feels sharp from first contact to final delivery.</p>
+            <div class="card-tag">Klare Kommunikation</div>
+            <h3>Direkt, organisiert, verlässlich</h3>
+            <p>Wir halten den Ablauf strukturiert, transparent und business-orientiert, damit sich das Projekt vom ersten Kontakt bis zur Lieferung klar anfühlt.</p>
           </article>
         </div>
       </div>
@@ -2689,17 +2768,16 @@
           <div class="cta-layout">
             <div>
               <div class="eyebrow">Let’s Talk</div>
-              <h2 class="cta-title">Let’s build the assets your growth actually needs.</h2>
+              <h2 class="cta-title">Lass uns die Assets bauen, die dein Wachstum wirklich braucht.</h2>
               <p class="muted" style="max-width: 56ch;">
-                If your business needs stronger creatives, a higher-converting website, or a sharper digital presence overall, Adframe Studio Vienna is built for exactly that.
+                Wenn dein Business stärkere Creatives, eine besser konvertierende Website oder insgesamt eine hochwertigere digitale Präsenz braucht, ist Adframe Studio Vienna genau dafür aufgebaut.
               </p>
             </div>
 
             <div class="cta-actions">
-              <!-- Replace with your real links -->
-              <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">WhatsApp</a>
-              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Instagram</a>
-              <a href="mailto:hello@adframestudiovienna.com" class="btn btn-primary">Book a Call</a>
+              <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">WhatsApp</a>
+              <a href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Instagram</a>
+              <a href="mailto:adframe.studio.vienna@gmail.com" class="btn btn-primary">Book a Call</a>
             </div>
           </div>
         </div>
@@ -2722,7 +2800,7 @@
             </div>
           </a>
           <p style="max-width: 42ch;">
-            Premium AI ad creatives and AI performance websites for businesses that want more attention, more inquiries, and more growth with modern execution.
+            Premium AI Ad Creatives und AI Performance Websites für Businesses, die mehr Aufmerksamkeit, mehr Anfragen und mehr Wachstum durch moderne Ausführung erreichen wollen.
           </p>
           <small>© 2026 Adframe Studio Vienna. All rights reserved.</small>
         </div>
@@ -2732,17 +2810,17 @@
           <ul class="footer-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#ai-strategy">AI Strategy</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#process">Prozess</a></li>
+            <li><a href="#contact">Kontakt</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 style="font-size: 1rem; margin-bottom: 14px; letter-spacing: -0.03em;">Social</h3>
+          <h3 style="font-size: 1rem; margin-bottom: 14px; letter-spacing: -0.03em;">Kontakt</h3>
           <ul class="footer-socials">
-            <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-            <li><a href="mailto:hello@adframestudiovienna.com">hello@adframestudiovienna.com</a></li>
+            <li><a href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href="mailto:adframe.studio.vienna@gmail.com">adframe.studio.vienna@gmail.com</a></li>
           </ul>
         </div>
       </div>
@@ -2751,17 +2829,16 @@
 
   <script>
     /* =========================================================
-       ADFRAME STUDIO VIENNA — INTERACTIONS
+       ADFRAME STUDIO VIENNA — INTERAKTIONEN
        ---------------------------------------------------------
-       Lightweight, performant JavaScript:
-       - Sticky header state
-       - Mobile menu toggle
-       - Scroll reveal animations
-       - Background shift on scroll
-       - Subtle mouse parallax in hero / showcase
+       Leichtgewichtiges, performantes JavaScript:
+       - Sticky Header
+       - Mobile Menu Toggle
+       - Scroll Reveal
+       - Subtiler Background Shift
+       - Leichte Maus-Parallax
        ========================================================= */
 
-    // Cached DOM references
     const header = document.querySelector(".site-header");
     const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -2771,7 +2848,6 @@
     const parallaxItems = document.querySelectorAll("[data-parallax]");
     const root = document.documentElement;
 
-    // Sticky header effect on scroll
     function updateHeaderState() {
       if (window.scrollY > 18) {
         header.classList.add("is-scrolled");
@@ -2783,35 +2859,62 @@
     updateHeaderState();
     window.addEventListener("scroll", updateHeaderState, { passive: true });
 
-    // Mobile navigation toggle
-    function toggleMobileMenu(forceState) {
-      const isOpen = forceState !== undefined
-        ? forceState
-        : mobileMenu.hasAttribute("hidden");
+    // Sicherheitshalber Menü beim Laden immer geschlossen halten
+    if (mobileMenu) {
+      mobileMenu.setAttribute("hidden", "");
+      mobileMenu.classList.remove("is-open");
+    }
 
+    function openMobileMenu() {
+      mobileMenu.removeAttribute("hidden");
+      mobileMenu.classList.add("is-open");
+      hamburger.classList.add("is-active");
+      hamburger.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.setAttribute("hidden", "");
+      mobileMenu.classList.remove("is-open");
+      hamburger.classList.remove("is-active");
+      hamburger.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+
+    function toggleMobileMenu() {
+      const isOpen = !mobileMenu.hasAttribute("hidden");
       if (isOpen) {
-        mobileMenu.removeAttribute("hidden");
-        hamburger.classList.add("is-active");
-        hamburger.setAttribute("aria-expanded", "true");
+        closeMobileMenu();
       } else {
-        mobileMenu.setAttribute("hidden", "");
-        hamburger.classList.remove("is-active");
-        hamburger.setAttribute("aria-expanded", "false");
+        openMobileMenu();
       }
     }
 
     if (hamburger && mobileMenu) {
-      hamburger.addEventListener("click", () => {
-        const isCurrentlyHidden = mobileMenu.hasAttribute("hidden");
-        toggleMobileMenu(isCurrentlyHidden);
-      });
+      hamburger.addEventListener("click", toggleMobileMenu);
 
       mobileLinks.forEach((link) => {
-        link.addEventListener("click", () => toggleMobileMenu(false));
+        link.addEventListener("click", () => closeMobileMenu());
+      });
+
+      // Klick außerhalb schließt das Menü
+      document.addEventListener("click", (event) => {
+        const clickedInsideMenu = mobileMenu.contains(event.target);
+        const clickedHamburger = hamburger.contains(event.target);
+
+        if (!mobileMenu.hasAttribute("hidden") && !clickedInsideMenu && !clickedHamburger) {
+          closeMobileMenu();
+        }
+      });
+
+      // ESC schließt das Menü
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !mobileMenu.hasAttribute("hidden")) {
+          closeMobileMenu();
+        }
       });
     }
 
-    // Reveal animations using IntersectionObserver
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -2831,7 +2934,6 @@
       revealObserver.observe(element);
     });
 
-    // Background shift while scrolling for subtle cinematic motion
     function updateBackgroundShift() {
       const scrollY = window.scrollY;
       const docHeight = document.body.scrollHeight - window.innerHeight;
@@ -2847,14 +2949,12 @@
     updateBackgroundShift();
     window.addEventListener("scroll", updateBackgroundShift, { passive: true });
 
-    // Mouse-based depth effect
     function handlePointerMove(event) {
       const x = (event.clientX / window.innerWidth) * 100;
       const y = (event.clientY / window.innerHeight) * 100;
       root.style.setProperty("--mx", `${x}%`);
       root.style.setProperty("--my", `${y}%`);
 
-      // Subtle parallax effect on hero visual
       if (heroVisual) {
         const rotateY = ((x - 50) / 50) * 5;
         const rotateX = ((50 - y) / 50) * 5;
@@ -2879,7 +2979,6 @@
       });
     }
 
-    // Only run pointer effects on devices that likely have a fine pointer
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
     if (canHover) {
@@ -2887,10 +2986,9 @@
       window.addEventListener("pointerleave", resetPointerEffects, { passive: true });
     }
 
-    // Close mobile menu if viewport changes to desktop width
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 940 && mobileMenu && !mobileMenu.hasAttribute("hidden")) {
-        toggleMobileMenu(false);
+      if (window.innerWidth > 940) {
+        closeMobileMenu();
       }
     });
   </script>
