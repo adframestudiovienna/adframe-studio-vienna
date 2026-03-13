@@ -331,20 +331,24 @@
     }
 
     .brand-mark {
-      width: 44px;
-      height: 44px;
+      width: 52px;
+      height: 52px;
       display: grid;
       place-items: center;
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.14);
       background:
         radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), transparent 40%),
         linear-gradient(180deg, rgba(201,166,107,0.16), rgba(255,255,255,0.05));
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-      font-weight: 800;
-      color: var(--accent-strong);
-      letter-spacing: -0.04em;
+      overflow: hidden;
       flex-shrink: 0;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .brand-text {
@@ -798,35 +802,6 @@
       height: 10px;
       border-radius: 999px;
       background: linear-gradient(90deg, rgba(201,166,107,0.16), rgba(255,255,255,0.05));
-    }
-
-    .hero-scroll-note {
-      position: absolute;
-      left: 50%;
-      bottom: 28px;
-      transform: translateX(-50%);
-      color: var(--text-soft);
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      opacity: 0.75;
-    }
-
-    .hero-scroll-note::before {
-      content: "";
-      width: 40px;
-      height: 1px;
-      background: rgba(255,255,255,0.2);
-    }
-
-    .hero-scroll-note::after {
-      content: "";
-      width: 40px;
-      height: 1px;
-      background: rgba(255,255,255,0.2);
     }
 
     /* =========================
@@ -1478,7 +1453,7 @@
 
     .showcase-content {
       height: 100%;
-      padding: 22px;
+      padding: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1486,19 +1461,30 @@
 
     .placeholder-art {
       flex: 1;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
       background:
         radial-gradient(circle at 20% 25%, rgba(201,166,107,0.14), transparent 26%),
         radial-gradient(circle at 75% 30%, rgba(255,255,255,0.07), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
-      display: grid;
-      place-items: center;
-      color: rgba(244, 240, 232, 0.62);
-      text-align: center;
-      padding: 20px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+    }
+
+    .placeholder-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02) brightness(0.92);
+      transform: scale(1.02);
+    }
+
+    .placeholder-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.32)),
+        radial-gradient(circle at top right, rgba(201,166,107,0.12), transparent 26%);
+      pointer-events: none;
     }
 
     .showcase-caption {
@@ -1506,7 +1492,9 @@
       align-items: end;
       justify-content: space-between;
       gap: 16px;
-      margin-top: 16px;
+      padding: 18px 22px 20px;
+      background: linear-gradient(180deg, rgba(8,8,10,0.4), rgba(8,8,10,0.78));
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     .showcase-caption strong {
@@ -1889,6 +1877,7 @@
       .brand-mark {
         width: 42px;
         height: 42px;
+        border-radius: 14px;
       }
 
       .brand-title {
@@ -1976,10 +1965,6 @@
         height: 260px !important;
       }
 
-      .hero-scroll-note {
-        display: none;
-      }
-
       /* Premium Mobile Menu */
       .mobile-menu {
         padding: 8px 0 14px;
@@ -1995,6 +1980,10 @@
         min-height: 58px;
         font-size: 1rem;
         border-radius: 18px;
+      }
+
+      .showcase-caption {
+        padding: 16px 18px 18px;
       }
     }
 
@@ -2031,8 +2020,10 @@
     <div class="container">
       <nav class="nav" aria-label="Hauptnavigation">
         <a href="#top" class="brand" aria-label="Adframe Studio Vienna Startseite">
-          <!-- Platzhalter-Logo -->
-          <div class="brand-mark">A</div>
+          <!-- Echtes Logo aus dem images-Ordner -->
+          <div class="brand-mark">
+            <img src="images/AdframeLogo.png" alt="Adframe Studio Vienna Logo" />
+          </div>
           <div class="brand-text">
             <span class="brand-title">Adframe Studio Vienna</span>
             <span class="brand-subtitle">AI Creative & Growth Studio</span>
@@ -2050,7 +2041,7 @@
           <div class="nav-actions">
             <a class="btn btn-ghost" href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a class="btn btn-ghost" href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            <a class="btn btn-primary" href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">Let’s Talk</a>
+            <a class="btn btn-primary" href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">Kontakt aufnehmen</a>
           </div>
 
           <button class="hamburger" id="hamburger" aria-label="Mobiles Menü öffnen" aria-expanded="false" aria-controls="mobile-menu" type="button">
@@ -2061,7 +2052,6 @@
         </div>
       </nav>
 
-      <!-- hidden sorgt dafür, dass das Menü initial sicher geschlossen bleibt -->
       <div class="mobile-menu" id="mobile-menu" hidden>
         <div class="mobile-panel">
           <div class="mobile-links">
@@ -2073,7 +2063,7 @@
           <div class="mobile-actions">
             <a href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">Let’s Talk</a>
+            <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer">Kontakt aufnehmen</a>
           </div>
         </div>
       </div>
@@ -2103,7 +2093,7 @@
             </p>
 
             <div class="hero-actions hero-animate delay-3">
-              <a href="mailto:adframe.studio.vienna@gmail.com" class="btn btn-primary">Book a Call</a>
+              <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Beratung anfragen</a>
               <a href="#services" class="btn btn-secondary">Services ansehen</a>
             </div>
 
@@ -2123,7 +2113,6 @@
             <div class="hero-orb"></div>
             <div class="hero-glow-ring"></div>
 
-            <!-- Layered Glass Cards für Premium-Tiefe -->
             <div class="hero-stack">
               <div class="glass-card visual-card-main">
                 <div class="card-ui">
@@ -2173,7 +2162,7 @@
           </div>
         </div>
 
-        <div class="hero-scroll-note">Scrollen, um mehr zu sehen</div>
+        <!-- Scroll-Hinweis bewusst entfernt -->
       </div>
     </section>
 
@@ -2544,7 +2533,6 @@
               </div>
             </div>
 
-            <!-- Mockup-Platzhalter -->
             <div class="website-visual" aria-hidden="true">
               <div class="screen screen-left">
                 <div class="screen-content">
@@ -2601,15 +2589,17 @@
             </h2>
           </div>
           <p class="section-copy">
-            Diese Platzhalter sind bewusst so aufgebaut, dass du sie später leicht austauschen kannst. Die Layer-Struktur liefert jetzt schon einen High-End-Look und bleibt flexibel für künftige Case Studies, Kampagnen-Previews oder Website-Screens.
+            Diese Visuals stammen direkt aus deinem images-Ordner und sind in die Showcase-Sektion eingebunden. Die Karten behalten dabei weiterhin den hochwertigen, geschichteten Premium-Look.
           </p>
         </div>
 
         <div class="showcase-wrap reveal">
-          <div class="showcase-grid" aria-label="Visueller Platzhalter-Showcase">
+          <div class="showcase-grid" aria-label="Visueller Showcase mit echten Bildern">
             <article class="showcase-card large-1" data-parallax="12">
               <div class="showcase-content">
-                <div class="placeholder-art">Project Visual 01</div>
+                <div class="placeholder-art">
+                  <img src="images/AdCreative.png" alt="Ad Creative Visual" />
+                </div>
                 <div class="showcase-caption">
                   <strong>Ad Creative Direction</strong>
                   <span>Visual Layer</span>
@@ -2619,7 +2609,9 @@
 
             <article class="showcase-card large-2" data-parallax="-10">
               <div class="showcase-content">
-                <div class="placeholder-art">Website Frame</div>
+                <div class="placeholder-art">
+                  <img src="images/WebsiteConcept.png" alt="Website Concept Visual" />
+                </div>
                 <div class="showcase-caption">
                   <strong>Performance Website Concept</strong>
                   <span>Screen System</span>
@@ -2629,7 +2621,9 @@
 
             <article class="showcase-card mid-1" data-parallax="8">
               <div class="showcase-content">
-                <div class="placeholder-art">Creative Preview</div>
+                <div class="placeholder-art">
+                  <img src="images/AssetVariation.png" alt="Asset Variation Visual" />
+                </div>
                 <div class="showcase-caption">
                   <strong>Campaign Asset Variation</strong>
                   <span>Testing Ready</span>
@@ -2639,10 +2633,12 @@
 
             <article class="showcase-card mid-2" data-parallax="-7">
               <div class="showcase-content">
-                <div class="placeholder-art">Project Visual 02</div>
+                <div class="placeholder-art">
+                  <img src="images/Brand.png" alt="Brand Visual" />
+                </div>
                 <div class="showcase-caption">
                   <strong>Luxury Brand Presentation</strong>
-                  <span>Placeholder</span>
+                  <span>Brand Frame</span>
                 </div>
               </div>
             </article>
@@ -2767,7 +2763,7 @@
         <div class="cta-panel reveal">
           <div class="cta-layout">
             <div>
-              <div class="eyebrow">Let’s Talk</div>
+              <div class="eyebrow">Kontakt</div>
               <h2 class="cta-title">Lass uns die Assets bauen, die dein Wachstum wirklich braucht.</h2>
               <p class="muted" style="max-width: 56ch;">
                 Wenn dein Business stärkere Creatives, eine besser konvertierende Website oder insgesamt eine hochwertigere digitale Präsenz braucht, ist Adframe Studio Vienna genau dafür aufgebaut.
@@ -2777,7 +2773,7 @@
             <div class="cta-actions">
               <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">WhatsApp</a>
               <a href="https://www.instagram.com/adframe.studio.vienna/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Instagram</a>
-              <a href="mailto:adframe.studio.vienna@gmail.com" class="btn btn-primary">Book a Call</a>
+              <a href="https://wa.me/436503105229" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Beratung anfragen</a>
             </div>
           </div>
         </div>
@@ -2793,7 +2789,9 @@
       <div class="footer-grid">
         <div>
           <a href="#top" class="brand" style="margin-bottom: 18px; display: inline-flex;">
-            <div class="brand-mark">A</div>
+            <div class="brand-mark">
+              <img src="images/AdframeLogo.png" alt="Adframe Studio Vienna Logo" />
+            </div>
             <div class="brand-text">
               <span class="brand-title">Adframe Studio Vienna</span>
               <span class="brand-subtitle">AI Creative & Growth Studio</span>
@@ -2830,13 +2828,6 @@
   <script>
     /* =========================================================
        ADFRAME STUDIO VIENNA — INTERAKTIONEN
-       ---------------------------------------------------------
-       Leichtgewichtiges, performantes JavaScript:
-       - Sticky Header
-       - Mobile Menu Toggle
-       - Scroll Reveal
-       - Subtiler Background Shift
-       - Leichte Maus-Parallax
        ========================================================= */
 
     const header = document.querySelector(".site-header");
@@ -2859,7 +2850,6 @@
     updateHeaderState();
     window.addEventListener("scroll", updateHeaderState, { passive: true });
 
-    // Sicherheitshalber Menü beim Laden immer geschlossen halten
     if (mobileMenu) {
       mobileMenu.setAttribute("hidden", "");
       mobileMenu.classList.remove("is-open");
@@ -2897,7 +2887,6 @@
         link.addEventListener("click", () => closeMobileMenu());
       });
 
-      // Klick außerhalb schließt das Menü
       document.addEventListener("click", (event) => {
         const clickedInsideMenu = mobileMenu.contains(event.target);
         const clickedHamburger = hamburger.contains(event.target);
@@ -2907,7 +2896,6 @@
         }
       });
 
-      // ESC schließt das Menü
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && !mobileMenu.hasAttribute("hidden")) {
           closeMobileMenu();
